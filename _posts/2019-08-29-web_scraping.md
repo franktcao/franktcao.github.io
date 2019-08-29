@@ -12,7 +12,6 @@ the vocabulary is not quite compatible. So I decided that the best way to showca
 is to scrape job postings to see what is desired in industry. 
 
 In this tutorial, we will begin to scrape `indeed.com` to compile a list of sought-after keywords that the current market is looking for. In the future tutorials, we will do a statistical
-analysis of the vocabulary built out of the . We will be using `BeautifulSoup` to parse the search results, loading them into `pandas` dataframes and saving them to `.csv` or `.json` files to
-process in the next tutorial.
+analysis of the vocabulary built out of what's done here. We will be using `BeautifulSoup` to parse the search results, loading them into `pandas` dataframes and saving them to `.csv` or `.json` files to process in the next tutorial.
 
 Let's get started...
