@@ -15,8 +15,13 @@
   <meta property="og:image" content="{{ page.image }}">
   {% else %}
   -->
-  <meta property="og:image" content="img/headshot.jpg">
+  {% if page.header-img %}
+   <meta property="og:image" content="{{ site.url }}/{{ page.header-img }}" />
+  {% endif %}
+
+  <meta property="og:description" content="{{ page.subtitle }}" />
   <!--
+  <meta property="og:image" content="img/headshot.jpg">
   {% endif %}
   -->
 
