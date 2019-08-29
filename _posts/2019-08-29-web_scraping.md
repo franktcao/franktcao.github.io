@@ -7,7 +7,7 @@ background: '/img/bg-index.jpg'
 markdown:           kramdown
 ---
 
-This job search has been a bit more difficult than orginally anticipated. There is a large overlap between what is done in physics and what is done in data science. Unfortunately,
+This job search has been a bit more difficult than originally anticipated. There is a large overlap between what is done in physics and what is done in data science. Unfortunately,
 the vocabulary is not quite compatible. So I decided that the best way to showcase my abilities (while keeping them in practice) 
 is to scrape job postings to see what is desired in industry. 
 
