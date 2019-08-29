@@ -15,5 +15,6 @@ I am using this site to document my journey \* *eye roll* \* in becoming a bette
 (in data science, with the Raspberry Pi, this very blog, or anything I find cool enough to share), living a healthier lifestyle, and my progress 
 in this job hunt.
 
-\[ Photo Credit: [Otto Rascon Photography](http://ottorascon.com/) \]{: style="text-align: center;"}
+\[ Photo Credit: [Otto Rascon Photography](http://ottorascon.com/) \]
+{: style="color:gray; font-size: 80%; text-align: center;"}
 
