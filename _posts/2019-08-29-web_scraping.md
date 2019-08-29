@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Job Scraping"
-subtitle: "Why scrape the bottom of the barrel for a job when you can scrape the web for a job!"
+subtitle: "Why scrape the bottom of the barrel for a job when you can scrape the web for one!"
 date: 2019-08-29 12:44:41
 background: '/img/bg-index.jpg'
 markdown:           kramdown
