@@ -2,7 +2,7 @@ title:              Frank's Nifty Little Blog
 email:              franktcao@gmail.com
 description:        Taking control of my life
 author:             Frank Cao
-baseurl:            "/franktcao"
+baseurl:            "/"
 url:                "https://franktcao.github.io"
 
 # Social Profiles
