@@ -21,9 +21,9 @@
 <loc>http://localhost:4000/posts/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/</loc>
+<loc>http://localhost:4000/brb/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/brb/</loc>
+<loc>http://localhost:4000/</loc>
 </url>
 </urlset>
