@@ -31,6 +31,8 @@ GEM
       sass (~> 3.4)
     jekyll-seo-tag (2.6.1)
       jekyll (>= 3.3, < 5.0)
+    jekyll-theme-clean-blog (4.0.8)
+      jekyll (~> 3.8.5)
     jekyll-theme-time-machine (0.1.1)
       jekyll (~> 3.5)
       jekyll-seo-tag (~> 2.0)
@@ -62,6 +64,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  jekyll-theme-clean-blog
   jekyll-theme-time-machine
 
 BUNDLED WITH
