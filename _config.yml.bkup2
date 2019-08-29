@@ -1,0 +1,6 @@
+title: Frank's Nifty Blog
+description: Currently under heavy construction.
+#show_downloads: true
+google_analytics:
+  #theme: jekyll-theme-time-machine
+theme: jekyll-theme-clean-blog
