@@ -4,4 +4,4 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem "minima"
+gem "jekyll-theme-time-machine"
