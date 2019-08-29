@@ -10,11 +10,15 @@
 
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
   
+  <!--
   {% if page.image %}
   <meta property="og:image" content="{{ page.image }}">
   {% else %}
+  -->
   <meta property="og:image" content="img/headshot.jpg">
+  <!--
   {% endif %}
+  -->
 
 
 
