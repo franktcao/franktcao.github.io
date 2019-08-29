@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Welcome!
-subtitle: Keep it together, Frank 
+subtitle: Keep it together
 description: Under heavy construction.
 background: '/img/bg-index.jpg'
 header-img: '/img/headshot.jpg'
