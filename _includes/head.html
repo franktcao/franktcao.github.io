@@ -15,6 +15,8 @@
   <meta property="og:image" content="{{ page.image }}">
   {% else %}
   -->
+  <meta property="og:title" content="{{ site.title }}" />
+  <meta property="og:url" content="{{ site.url }}" />
   {% if page.header-img %}
    <meta property="og:image" content="{{ site.url }}/{{ page.header-img }}" />
   {% endif %}

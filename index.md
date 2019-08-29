@@ -4,7 +4,7 @@ title: Welcome!
 subtitle: Keep it together, Frank 
 description: Under heavy construction.
 background: '/img/bg-index.jpg'
-header-img = '/img/headshot.jpg'
+header-img: '/img/headshot.jpg'
 ---
 
 # Welcome to My Blog! 
