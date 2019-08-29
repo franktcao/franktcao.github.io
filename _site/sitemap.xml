@@ -1,28 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/2017/10/26/dinosaurs.html</loc>
-<lastmod>2017-10-26T23:45:13-04:00</lastmod>
+<loc>http://localhost:4000/2010/08/28/welcome-to-jekyll.html</loc>
+<lastmod>2010-08-28T00:00:00-04:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/2017/10/27/dreams.html</loc>
-<lastmod>2017-10-27T23:45:13-04:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/2017/10/28/exploration.html</loc>
-<lastmod>2017-10-28T23:45:13-04:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/2017/10/29/prophecy.html</loc>
-<lastmod>2017-10-29T23:45:13-04:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/2017/10/30/heartbeats.html</loc>
-<lastmod>2017-10-30T23:45:13-04:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/2017/10/31/man-must-explore.html</loc>
-<lastmod>2017-10-31T10:45:13-04:00</lastmod>
+<loc>http://localhost:4000/2019/08/29/web_scraping.html</loc>
+<lastmod>2019-08-29T08:44:41-04:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/about.html</loc>
@@ -40,9 +24,9 @@
 <loc>http://localhost:4000/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/brb/</loc>
+<loc>http://localhost:4000/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/posts/page2/</loc>
+<loc>http://localhost:4000/brb/</loc>
 </url>
 </urlset>
