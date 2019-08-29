@@ -1,3 +1,6 @@
 [submodule "time-machine"]
 	path = time-machine
 	url = https://github.com/pages-themes/time-machine
+[submodule "startbootstrap-clean-blog-jekyll"]
+	path = startbootstrap-clean-blog-jekyll
+	url = https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll
