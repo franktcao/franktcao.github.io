@@ -5,6 +5,7 @@ subtitle: "Why scrape the bottom of the barrel for a job when you can scrape the
 date: 2019-08-29 12:44:41
 background: '/img/bg-index.jpg'
 markdown:           kramdown
+tags: data-science machine-learning web-scraping tutorial
 ---
 
 This job search has been a bit more difficult than originally anticipated. There is a large overlap between what is done in physics and what is done in data science. Unfortunately,

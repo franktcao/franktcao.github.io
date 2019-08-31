@@ -15,6 +15,7 @@
   <meta property="og:image" content="{{ page.image }}">
   {% else %}
   -->
+  <!-- Meta information so sites like Facebook can find a title, description, and a thumbnail -->
   <meta property="og:title" content="{{ site.title }}" />
   <meta property="og:url" content="{{ site.url }}" />
   {% if page.header-img %}
@@ -40,5 +41,10 @@
   <link rel="stylesheet" href="{{"/assets/main.css" | relative_url }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
+
+  <!-- Collect tags from blog (see http://longqian.me/2017/02/09/github-jekyll-tag/) -->
+  {% if site.tags != "" %}
+  {% include collecttags.html %}
+  {% endif %}
 
 </head>
