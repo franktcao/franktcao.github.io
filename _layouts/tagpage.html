@@ -1,9 +1,11 @@
 ---
 layout: page
-title:  Relevant Posts 
 ---
 <div class="post">
-<h1>Tag: {{ page.tag }}</h1>
+<h1>Tag = {{ page.tag }}</h1>
+
+
+<br>
 <ul>
 {% for post in site.tags[page.tag] %}
   <li><a href="{{ post.url }}">{{ post.title }}</a> ({{ post.date | date_to_string }})<br>
@@ -11,11 +13,14 @@ title:  Relevant Posts
   </li>
 {% endfor %}
 </ul>
+<br>
+
+
 </div>
 
 <hr>
 <p>
 {% include archive.html %}
-<\p>
+</p>
 
 <hr>

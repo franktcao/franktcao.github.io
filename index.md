@@ -9,14 +9,20 @@ header-img: '/img/headshot.jpg'
 
 # Welcome to My Blog! 
 
+<p></p>
+#### Update (08/31/19):   
+{: style="color: red"}
+* You can now subscribe to biweekly updates (see top right in the navigation bar)!
+* Each post will have tags associated to it so you can look up the tech & tutorial, health, or any other category.
+
 The `blog` is finally up and running!... but at the same time under heavy construction. I plan on posting about blogging (pretty meta, right?), tutorials on using the Raspberry Pi,
     cool data science projects, journaling my road to getting in shape, and sharing my experiences in this job hunt.
 
 On the docket:
 * **Getting started on a blog** using `github.io` and `jekyll` and adding features that this page doesn't have yet:
-  * Adding tags to blogs and/or creating different blog categories 
-  * Adding comments or a form to a blog
+  * ~~Adding tags to blogs~~ and/or creating different blog categories <font color='red'>✓</font> (08/31/19)
   * ~~Adding a mailing list/subscription form~~ <font color='red'>✓</font> (08/30/19)
+  * Adding comments or a form to a blog
 * **Raspberry Pi Tutorials**
   * Installing Pi-hole to block ads right from the router
   * Installing a firewall (ufw)

@@ -6,8 +6,8 @@ date: 2019-08-29 12:44:41
 background: '/img/bg-index.jpg'
 markdown:           kramdown
 tags: data-science machine-learning web-scraping tutorial
+description: Using `BeautifulSoup` and `requests` to extract job postings from indeed.com
 ---
-
 This job search has been a bit more difficult than originally anticipated. There is a large overlap between what is done in physics and what is done in data science. Unfortunately,
 the vocabulary is not quite compatible. So I decided that the best way to showcase my abilities (while keeping them in practice) 
 is to scrape job postings to see what is desired in industry. 
@@ -16,3 +16,13 @@ In this tutorial, we will begin to scrape `indeed.com` to compile a list of soug
 analysis of the vocabulary built out of what's done here. We will be using `BeautifulSoup` to parse the search results, loading them into `pandas` dataframes and saving them to `.csv` or `.json` files to process in the next tutorial.
 
 Let's get started...
+
+----
+
+## Contents
+{:.no_toc}
+
+- TOC
+{:toc}
+
+----
