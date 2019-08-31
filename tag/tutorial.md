@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Relevant Posts (Tag: tutorial)"
-tag: tutorial
+ title: "Relevant Posts" subtitle: "(Tag: tutorial)" 
+tag: tutorial 
 robots: noindex
 ---
