@@ -31,7 +31,7 @@ On the docket:
   * Computer Vision
     * Facebook's open source project DensePose
   * Web-scraping
-    * Using `BeautifulSoup` to scrap indeed.com's job postings
+    * Using `BeautifulSoup` to scrape indeed.com's job postings
   * SQL
     * Querying large datasets using Google's BigQuery variant 
 * **Getting in Shape**
