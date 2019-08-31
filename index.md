@@ -14,7 +14,7 @@ The `blog` is finally up and running!... but at the same time under heavy constr
 
 On the docket:
 * **Getting started on a blog** using `github.io` and `jekyll` and adding features that this page doesn't have yet:
-  * Adding tags to blogs 
+  * Adding tags to blogs and/or creating different blog categories 
   * Adding comments or a form to a blog
   * ~~Adding a mailing list/subscription form~~ <font color='red'>✓</font> (08/30/19)
 * **Raspberry Pi Tutorials**
