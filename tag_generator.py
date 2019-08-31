@@ -6,6 +6,10 @@ Copyright 2017 Long Qian
 Contact: lqian8@jhu.edu
 This script creates tags for your Jekyll blog hosted by Github page.
 No plugins required.
+
+
+Altered by Frank Cao on 08/30/19.
+  - Changed the front matter so that the title is more readable
 '''
 
 import glob
@@ -46,7 +50,7 @@ if not os.path.exists(tag_dir):
 for tag in total_tags:
     tag_filename = tag_dir + tag + '.md'
     f = open(tag_filename, 'a')
-    write_str = '---\nlayout: tagpage\ntitle: \"Tag: ' + tag + '\"\ntag: ' + tag + '\nrobots: noindex\n---\n'
+    write_str = '---\nlayout: tagpage\ntitle: \"Relevant Posts (Tag: ' + tag + '\"\ntag: ' + tag + '\nrobots: noindex\n---\n'
     f.write(write_str)
     f.close()
 
