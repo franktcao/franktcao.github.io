@@ -1,7 +1,7 @@
 ---
 layout: tagpage
 title: Relevant Posts
-subtitle: "Tag:" data-science
+subtitle: Tags are data-science
 tag: data-science
 robots: noindex
 ---
