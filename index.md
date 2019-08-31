@@ -16,7 +16,7 @@ On the docket:
 * **Getting started on a blog** using `github.io` and `jekyll` and adding features that this page doesn't have yet:
   * Adding tags to blogs 
   * Adding comments or a form to a blog
-  * Adding a mailing list/subscription form
+  * ~~Adding a mailing list/subscription form~~ <font color='red'>✓</font> (08/30/19)
 * **Raspberry Pi Tutorials**
   * Installing Pi-hole to block ads right from the router
   * Installing a firewall (ufw)
