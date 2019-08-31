@@ -22,7 +22,7 @@ On the docket:
 * **Getting started on a blog** using `github.io` and `jekyll` and adding features that this page doesn't have yet:
   * ~~Adding tags to blogs~~ and/or creating different blog categories <font color='red'>✓</font> (08/31/19)
   * ~~Adding a mailing list/subscription form~~ <font color='red'>✓</font> (08/30/19)
-  * Adding comments or a form to a blog
+  * Adding a form or functionality for comments/likes/upvotes to each blog as a means of receiving feedback 
 * **Raspberry Pi Tutorials**
   * Installing Pi-hole to block ads right from the router
   * Installing a firewall (ufw)
