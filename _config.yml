@@ -5,10 +5,13 @@ author:             Frank Cao
 baseurl:            ""
 url:                "https://franktcao.github.io"
 
+
+#highlighter:        rouge
+
 # Social Profiles
 #twitter_username:   SBootstrap
 github_username:    franktcao
-facebook_username:  franktcao
+#facebook_username:  franktcao
 linkedin_username:  franktcao
 
 # Add your google-analytics ID here to activate google analytics
