@@ -3,11 +3,13 @@ layout: post
 title: "Job Scraping"
 subtitle: "Why scrape the bottom of the barrel for a job when you can scrape the web for one!"
 date: 2019-08-29 12:44:41
-background: '/img/bg-index.jpg'
+background: '/img/emile-perron-xrVDYZRGdw4-unsplash.jpg'
 markdown:           kramdown
 tags: data-science machine-learning web-scraping tutorial
 description: Using `BeautifulSoup` and `requests` to extract job postings from indeed.com
 ---
+\[ Photo by [Émile Perron on Unsplash](https://unsplash.com/@emilep) \]
+{: style="color:gray; font-size: 80%; text-align: center;"}
 
 This job search has been a bit more difficult than originally anticipated. There is a large overlap between what is done in physics and what is done in data science. Unfortunately,
 the vocabulary is not quite compatible. So I decided that the best way to showcase my abilities (while keeping them in practice) 
