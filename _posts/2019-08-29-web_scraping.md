@@ -475,11 +475,10 @@ or even answer them personally.
 ----
 
 
-<center>
-<b>
 Comments!
-</b>
-</center>
+=====
+{: style="text-align: center;"}
+
 <script src="https://kit.fontawesome.com/9d39d89011.js"></script>
 <form method="POST" action="https://formspree.io/franktcao@gmail.com">
   <div class="control-group">
