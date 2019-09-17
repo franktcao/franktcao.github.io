@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-09-17T16:25:55-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Dammit Frank!</title><subtitle>Keep It Together</subtitle><author><name>Frank Cao</name></author><entry><title type="html">Job Scraping</title><link href="http://localhost:4000/2019/08/29/web_scraping.html" rel="alternate" type="text/html" title="Job Scraping" /><published>2019-08-29T08:44:41-04:00</published><updated>2019-08-29T08:44:41-04:00</updated><id>http://localhost:4000/2019/08/29/web_scraping</id><content type="html" xml:base="http://localhost:4000/2019/08/29/web_scraping.html">&lt;p style=&quot;color:gray; font-size: 80%; text-align: center;&quot;&gt;[ Photo by &lt;a href=&quot;https://unsplash.com/@emilep&quot;&gt;Émile Perron on Unsplash&lt;/a&gt; ]&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-09-17T18:41:12-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Dammit Frank!</title><subtitle>Keep It Together</subtitle><author><name>Frank Cao</name></author><entry><title type="html">Job Scraping</title><link href="http://localhost:4000/2019/08/29/web_scraping.html" rel="alternate" type="text/html" title="Job Scraping" /><published>2019-08-29T08:44:41-04:00</published><updated>2019-08-29T08:44:41-04:00</updated><id>http://localhost:4000/2019/08/29/web_scraping</id><content type="html" xml:base="http://localhost:4000/2019/08/29/web_scraping.html">&lt;p&gt;&lt;a class=&quot;top-link hide&quot; href=&quot;&quot; id=&quot;js-top&quot;&gt;
+    &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 6&quot;&gt;&lt;path d=&quot;M12 6H0l6-6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+      &lt;span class=&quot;screen-reader-text&quot;&gt;Back to top&lt;/span&gt;
+      &lt;/a&gt;&lt;/p&gt;
+
+&lt;p style=&quot;color:gray; font-size: 80%; text-align: center;&quot;&gt;[ Photo by &lt;a href=&quot;https://unsplash.com/@emilep&quot;&gt;Émile Perron on Unsplash&lt;/a&gt; ]&lt;/p&gt;
 
 &lt;p&gt;This job search has been a bit more difficult than originally anticipated. There is a large overlap between what is done in physics and what is done in data science. Unfortunately,
 the vocabulary is not quite compatible. So I decided that the best way to showcase my abilities (while keeping them in practice) 
@@ -462,7 +467,7 @@ From there, we’ll construct a &lt;code class=&quot;highlighter-rouge&quot;&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;At the very end, we save the data in a comma-separated values (CSV) format with the date to be used in the next stages.
-The date is important to not overwrite your data on different days but also if there are any changes of the formatting to indeed’s website, 
+The date is important to not overwrite your data on different days but also if there are any changes to indeed’s website formatting, 
 we still have a working copy to work with for the next stages, with the present scripts.&lt;/p&gt;
 
 &lt;h1 id=&quot;4-conclusion&quot;&gt;4. Conclusion&lt;/h1&gt;
@@ -480,6 +485,50 @@ we still have a working copy to work with for the next stages, with the present 
 &lt;p&gt;What we’ll do in the next tutorial is clean and format the data in a more suitable format for our TFIDF, salary regression, and any other future analysis we come up with. 
 Please leave a comment and provide from feedback. I know it might be a little too detailed in some areas and not enough in other areas. I can make updates to extend on them
 or even answer them personally.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;center&gt;
+&lt;b&gt;
+Comments!
+&lt;/b&gt;
+&lt;/center&gt;
+&lt;script src=&quot;https://kit.fontawesome.com/9d39d89011.js&quot;&gt;&lt;/script&gt;
+
+&lt;form method=&quot;POST&quot; action=&quot;https://formspree.io/franktcao@gmail.com&quot;&gt;
+  &lt;div class=&quot;control-group&quot;&gt;
+    &lt;!--&lt;div class=&quot;form-group floating-label-form-group controls&quot;&gt;--&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+      &lt;span class=&quot;input-group-addon&quot;&gt;&lt;i class=&quot;fa fa-user fa-fw&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+      &lt;label&gt;Name*&lt;/label&gt;
+      &lt;input type=&quot;text&quot; name=&quot;Name&quot; class=&quot;form-control&quot; placeholder=&quot;Dave Chappelle&quot; id=&quot;name&quot; required=&quot;&quot; data-validation-required-message=&quot;First and last name, please.&quot; /&gt;
+      &lt;p class=&quot;help-block text-danger&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;control-group&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+		&lt;span class=&quot;input-group-addon&quot;&gt;&lt;i class=&quot;fa fa-envelope-o fa-fw&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+      &lt;label&gt;Email Address*&lt;/label&gt;
+      &lt;input type=&quot;email&quot; name=&quot;Email Address&quot; class=&quot;form-control&quot; placeholder=&quot;user@site.com&quot; id=&quot;email&quot; required=&quot;&quot; data-validation-required-message=&quot;Please enter your email address.&quot; /&gt;
+      &lt;p class=&quot;help-block text-danger&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class=&quot;control-group&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+      &lt;label&gt;Comment*&lt;/label&gt;
+      &lt;textarea rows=&quot;5&quot; name=&quot;Comment&quot; class=&quot;form-control&quot; placeholder=&quot;What I think about this post is...&quot; id=&quot;message&quot; required=&quot;&quot; data-validation-required-message=&quot;Please write a comment.&quot;&gt;&lt;/textarea&gt;
+      &lt;p class=&quot;help-block text-danger&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;br /&gt;
+  &lt;div id=&quot;success&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;form-group&quot;&gt;
+    &lt;center&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot; id=&quot;sendMessageButton&quot;&gt;Send&lt;/button&gt;
+    &lt;/center&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
 
 &lt;!---
 |-----------------+------------+-----------------+----------------|
@@ -528,5 +577,43 @@ But next comes a paragraph with an inline math statement:
 | The job title 
 | The job title 
 | The job title 
- --&gt;</content><author><name>Frank Cao</name></author><category term="data-science" /><category term="machine-learning" /><category term="web-scraping" /><category term="tutorial" /><summary type="html">[ Photo by Émile Perron on Unsplash ]</summary></entry><entry><title type="html">Welcome To Jekyll</title><link href="http://localhost:4000/2010/08/28/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome To Jekyll" /><published>2010-08-28T00:00:00-04:00</published><updated>2010-08-28T00:00:00-04:00</updated><id>http://localhost:4000/2010/08/28/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/2010/08/28/welcome-to-jekyll.html">&lt;h2 id=&quot;hi&quot;&gt;Hi!&lt;/h2&gt;
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: red; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+//Get the button:
+mybutton = document.getElementById(&quot;myBtn&quot;);
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop &gt; 20 || document.documentElement.scrollTop &gt; 20) {
+          mybutton.style.display = &quot;block&quot;;
+            } else {
+                  mybutton.style.display = &quot;none&quot;;
+                    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+ --&gt;</content><author><name>Frank Cao</name></author><category term="data-science" /><category term="machine-learning" /><category term="web-scraping" /><category term="tutorial" /><summary type="html">Back to top</summary></entry><entry><title type="html">Welcome To Jekyll</title><link href="http://localhost:4000/2010/08/28/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome To Jekyll" /><published>2010-08-28T00:00:00-04:00</published><updated>2010-08-28T00:00:00-04:00</updated><id>http://localhost:4000/2010/08/28/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/2010/08/28/welcome-to-jekyll.html">&lt;h2 id=&quot;hi&quot;&gt;Hi!&lt;/h2&gt;
 &lt;p&gt;Testing &lt;code class=&quot;highlighter-rouge&quot;&gt;markup&lt;/code&gt;&lt;/p&gt;</content><author><name>Frank Cao</name></author><summary type="html">Hi! Testing markup</summary></entry></feed>

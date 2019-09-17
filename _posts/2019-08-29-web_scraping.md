@@ -8,6 +8,12 @@ markdown:           kramdown
 tags: data-science machine-learning web-scraping tutorial
 description: Using `BeautifulSoup` and `requests` to extract job postings from indeed.com
 ---
+
+  <a class="top-link hide" href="" id="js-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6"><path d="M12 6H0l6-6z"/></svg>
+      <span class="screen-reader-text">Back to top</span>
+      </a>
+
 \[ Photo by [Émile Perron on Unsplash](https://unsplash.com/@emilep) \]
 {: style="color:gray; font-size: 80%; text-align: center;"}
 
@@ -448,7 +454,7 @@ df.to_csv(date + '_indeed-ds-postings.csv', encoding='utf-8')
 ```
 
 At the very end, we save the data in a comma-separated values (CSV) format with the date to be used in the next stages.
-The date is important to not overwrite your data on different days but also if there are any changes of the formatting to indeed's website, 
+The date is important to not overwrite your data on different days but also if there are any changes to indeed's website formatting, 
 we still have a working copy to work with for the next stages, with the present scripts.
 
 
@@ -465,6 +471,51 @@ There, you have it! To review, we've
 What we'll do in the next tutorial is clean and format the data in a more suitable format for our TFIDF, salary regression, and any other future analysis we come up with. 
 Please leave a comment and provide from feedback. I know it might be a little too detailed in some areas and not enough in other areas. I can make updates to extend on them
 or even answer them personally.
+
+----
+
+
+<center>
+<b>
+Comments!
+</b>
+</center>
+<script src="https://kit.fontawesome.com/9d39d89011.js"></script>
+<form method="POST" action="https://formspree.io/franktcao@gmail.com">
+  <div class="control-group">
+    <!--<div class="form-group floating-label-form-group controls">-->
+    <div class="form-group">
+      <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+      <label>Name*</label>
+      <input type="text" name="Name" class="form-control" placeholder="Dave Chappelle" id="name" required data-validation-required-message="First and last name, please.">
+      <p class="help-block text-danger"></p>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="form-group">
+		<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+      <label>Email Address*</label>
+      <input type="email" name="Email Address" class="form-control" placeholder="user@site.com" id="email" required data-validation-required-message="Please enter your email address.">
+      <p class="help-block text-danger"></p>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <div class="form-group">
+      <label>Comment*</label>
+      <textarea rows="5" name="Comment" class="form-control" placeholder="What I think about this post is..." id="message" required data-validation-required-message="Please write a comment."></textarea>
+      <p class="help-block text-danger"></p>
+    </div>
+  </div>
+  <br>
+  <div id="success"></div>
+  <div class="form-group">
+    <center>
+    <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+    </center>
+  </div>
+</form>
+
 
 
 
@@ -517,4 +568,42 @@ But next comes a paragraph with an inline math statement:
 | The job title 
 | The job title 
 | The job title 
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: red; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+//Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          mybutton.style.display = "block";
+            } else {
+                  mybutton.style.display = "none";
+                    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
  -->
