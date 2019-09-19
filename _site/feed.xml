@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-09-18T20:10:41-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Dammit Frank!</title><subtitle>Keep It Together</subtitle><author><name>Frank Cao</name></author><entry><title type="html">Job Scraping</title><link href="http://localhost:4000/2019/08/29/web_scraping.html" rel="alternate" type="text/html" title="Job Scraping" /><published>2019-08-29T08:44:41-04:00</published><updated>2019-08-29T08:44:41-04:00</updated><id>http://localhost:4000/2019/08/29/web_scraping</id><content type="html" xml:base="http://localhost:4000/2019/08/29/web_scraping.html">&lt;p&gt;&lt;a class=&quot;top-link hide&quot; href=&quot;&quot; id=&quot;js-top&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-09-18T20:36:49-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Dammit Frank!</title><subtitle>Keep It Together</subtitle><author><name>Frank Cao</name></author><entry><title type="html">Job Scraping</title><link href="http://localhost:4000/2019/08/29/web_scraping.html" rel="alternate" type="text/html" title="Job Scraping" /><published>2019-08-29T08:44:41-04:00</published><updated>2019-08-29T08:44:41-04:00</updated><id>http://localhost:4000/2019/08/29/web_scraping</id><content type="html" xml:base="http://localhost:4000/2019/08/29/web_scraping.html">&lt;p&gt;&lt;a class=&quot;top-link hide&quot; href=&quot;&quot; id=&quot;js-top&quot;&gt;
     &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 6&quot;&gt;&lt;path d=&quot;M12 6H0l6-6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
       &lt;span class=&quot;screen-reader-text&quot;&gt;Back to top&lt;/span&gt;
       &lt;/a&gt;&lt;/p&gt;
@@ -62,7 +62,14 @@ is to scrape job postings to see what is desired in industry.&lt;/p&gt;
 &lt;!--/*
 You can find the notebook to follow along with the [notebook](https://www.github.com/franktcao/job_scraping/scrape_indeed.ipynb) or you can just go directly to the [full repository](https://www.github.com/franktcao/job_scraping/). First you will need to make sure you have the required modules. 
 */ --&gt;
-&lt;p&gt;You can find the notebook to follow along with the &lt;a href=&quot;https://github.com/franktcao/job_scraping/blob/master/scrape_indeed.ipynb&quot;&gt;notebook&lt;/a&gt; or you can just go directly to the &lt;a href=&quot;https://www.github.com/franktcao/job_scraping/&quot;&gt;full repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can follow along&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;with this &lt;a href=&quot;https://colab.research.google.com/github/franktcao/job_scraping/blob/master/scrape_indeed.ipynb&quot;&gt;&lt;u&gt;interactive in-browser notebook&lt;/u&gt;&lt;/a&gt; &lt;sup&gt;*&lt;/sup&gt;,&lt;/li&gt;
+  &lt;li&gt;by downloading the &lt;a href=&quot;https://github.com/franktcao/job_scraping/blob/master/scrape_indeed.ipynb&quot;&gt;&lt;u&gt;source&lt;/u&gt;&lt;/a&gt; to work on it locally, or&lt;/li&gt;
+  &lt;li&gt;by going directly to the &lt;a href=&quot;https://www.github.com/franktcao/job_scraping/&quot;&gt;&lt;u&gt;full repository&lt;/u&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;sup&gt;*&lt;/sup&gt;The interactive notebook requires a google account to save a copy and run on their servers.&lt;/p&gt;
 
 &lt;h2 id=&quot;setting-up-for-success&quot;&gt;Setting Up for Success&lt;/h2&gt;
 

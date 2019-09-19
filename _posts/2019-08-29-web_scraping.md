@@ -48,8 +48,12 @@ Let's get started...
 <!--/*
 You can find the notebook to follow along with the [notebook](https://www.github.com/franktcao/job_scraping/scrape_indeed.ipynb) or you can just go directly to the [full repository](https://www.github.com/franktcao/job_scraping/). First you will need to make sure you have the required modules. 
 */ -->
-You can find the notebook to follow along with the [notebook](https://github.com/franktcao/job_scraping/blob/master/scrape_indeed.ipynb) or you can just go directly to the [full repository](https://www.github.com/franktcao/job_scraping/). 
+You can follow along 
+* with this [<u>interactive in-browser notebook</u>](https://colab.research.google.com/github/franktcao/job_scraping/blob/master/scrape_indeed.ipynb) <sup>\*</sup>,
+* by downloading the [<u>source</u>](https://github.com/franktcao/job_scraping/blob/master/scrape_indeed.ipynb) to work on it locally, or 
+* by going directly to the [<u>full repository</u>](https://www.github.com/franktcao/job_scraping/). 
 
+<sup>\*</sup>The interactive notebook requires a google account to save a copy and run on their servers. 
 
 ## Setting Up for Success
 
