@@ -17,7 +17,9 @@ description: Using `BeautifulSoup` and `requests` to extract job postings from i
 \[ Photo by [Émile Perron on Unsplash](https://unsplash.com/@emilep) \]
 {: style="color:gray; font-size: 80%; text-align: center;"}
 
+<!--
 <script src="https://gist.github.com/franktcao/0683211eaf86f419dc8ea2f0eb85960c.js"></script>
+-->
 
 This job search has been a bit more difficult than originally anticipated. There is a large overlap between what is done in physics and what is done in data science. Unfortunately,
 the vocabulary is not quite compatible. So I decided that the best way to showcase my abilities (while keeping them in practice) 
