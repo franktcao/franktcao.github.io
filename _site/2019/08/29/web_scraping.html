@@ -141,6 +141,8 @@
 
 <p style="color:gray; font-size: 80%; text-align: center;">[ Photo by <a href="https://unsplash.com/@emilep">Émile Perron on Unsplash</a> ]</p>
 
+<script src="https://gist.github.com/franktcao/0683211eaf86f419dc8ea2f0eb85960c.js"></script>
+
 <p>This job search has been a bit more difficult than originally anticipated. There is a large overlap between what is done in physics and what is done in data science. Unfortunately,
 the vocabulary is not quite compatible. So I decided that the best way to showcase my abilities (while keeping them in practice) 
 is to scrape job postings to see what is desired in industry.</p>
@@ -553,7 +555,7 @@ We’re looking to loop over cities we’re interested in and then loop over pag
 From there, we’ll construct a <code class="highlighter-rouge">pandas</code> dataframe with the variables that we’ll use in our machine learning and analysis stage.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">max_pages_per_city</span> <span class="o">=</span> <span class="mi">60</span>
-<span class="n">POSTINGS_PER_PAGE</span> <span class="o">=</span> <span class="mi">18</span> <span class="c1"># Indeed's default 19 entries per page
+<span class="n">POSTINGS_PER_PAGE</span> <span class="o">=</span> <span class="mi">18</span> <span class="c1"># Indeed's default 18 entries per page
 </span><span class="n">postings_per_city</span> <span class="o">=</span> <span class="n">max_pages_per_city</span> <span class="o">*</span> <span class="n">POSTINGS_PER_PAGE</span> 
 
 <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">'job_title'</span><span class="p">,</span> <span class="s">'company_name'</span><span class="p">,</span> <span class="s">'location'</span><span class="p">,</span> <span class="s">'neighborhood'</span><span class="p">,</span> <span class="s">'description'</span><span class="p">,</span> <span class="s">'salary'</span><span class="p">,</span> <span class="s">'link'</span><span class="p">]</span>
