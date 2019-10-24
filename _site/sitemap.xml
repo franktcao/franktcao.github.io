@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/2010/08/28/welcome-to-jekyll.html</loc>
-<lastmod>2010-08-28T00:00:00-04:00</lastmod>
-</url>
-<url>
 <loc>http://localhost:4000/2019/08/29/web_scraping.html</loc>
 <lastmod>2019-08-29T08:44:41-04:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/life/2019/10/23/what_makes_today_successful.html</loc>
+<lastmod>2019-10-23T18:36:05-04:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/about.html</loc>
@@ -30,10 +30,19 @@
 <loc>http://localhost:4000/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/tag/life.html</loc>
+</url>
+<url>
 <loc>http://localhost:4000/tag/machine-learning.html</loc>
 </url>
 <url>
+<loc>http://localhost:4000/tag/personal.html</loc>
+</url>
+<url>
 <loc>http://localhost:4000/subscribe.html</loc>
+</url>
+<url>
+<loc>http://localhost:4000/test.html</loc>
 </url>
 <url>
 <loc>http://localhost:4000/tag/tutorial.html</loc>

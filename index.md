@@ -10,9 +10,9 @@ header-img: '/img/headshot.jpg'
 # Welcome to My Blog! 
 
 <p></p>
-#### Update (08/31/19):   
+#### Updates:
 {: style="color: red"}
-* You can now subscribe to biweekly updates (see top right in the navigation bar)!
+* You can now subscribe to at-most biweekly updates (see top right in the navigation bar)!
 * Each post will have tags associated to it so you can look up the tech & tutorial, health, or any other category.
 
 The `blog` is finally up and running!... but at the same time under heavy construction. I plan on posting about blogging (pretty meta, right?), tutorials on using the Raspberry Pi,
@@ -24,16 +24,18 @@ On the docket:
   * ~~Adding a mailing list/subscription form~~ <font color='red'>✓</font> (08/30/19)
   * Adding a form or functionality for comments/likes/upvotes to each blog as a means of receiving feedback 
 * **Raspberry Pi Tutorials**
-  * Installing Pi-hole to block ads right from the router
-  * Installing a firewall (ufw)
-  * Installing Nextcloud to transform your extra external storage into cloud storage
+  * Installing `Pi-hole` to block ads right from the router
+  * Installing a firewall (`ufw`)
+  * Installing `Nextcloud` to transform your extra external storage into cloud storage
 * **Data Science Tutorials**
   * Computer Vision
-    * Facebook's open source project DensePose
+    * Cool and short `OpenCV` walk-throughs
+    * Facebook's open source project `DensePose`
   * Web-scraping
     * Using `BeautifulSoup` to scrape indeed.com's job postings
+    * Working with `Selenium` to navigate through a site
   * SQL
-    * Querying large datasets using Google's BigQuery variant 
+    * Querying large datasets using Google's `BigQuery` variant 
 * **Getting in Shape**
   * Where I am in life and what I'm doing about it
   * Brazilian Jiu-Jitsu
