@@ -3,10 +3,12 @@ layout: home
 title: Welcome!
 subtitle: Keep it together
 description: Under heavy construction.
-background: '/img/bg-index.jpg'
+background: '/img/kristopher-roller-PC_lbSSxCZE-unsplash.jpg'
 header-img: '/img/headshot.jpg'
 ---
+<!--background: '/img/bg-index.jpg'-->
 
+\[ Photo by [Kristopher Roller on Unsplash](https://unsplash.com/@krisroller) \]
 # Welcome to My Blog! 
 
 <p></p>
