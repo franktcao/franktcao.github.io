@@ -23,7 +23,6 @@ description: Taking a second to put things into perspective.
 -->
 
 ## Ramble
-TEST 
 
 
 So it's happened: I am right now that guy writing his blog at [*Insert Your Favorite Coffee Spot*]. I'm becoming more comfortable with that. I'm also becoming more comfortable with the idea of writing things less formally and more in the stream of consciousness style. I'm letting go of some of my perfectionism that's kept me back from being productive because at the end of the day, who's going to read this -- who cares, right? And no, I don't mean that in some pessimistic or dismal way. I truly mean that I have been spending so much energy on inconsequential things that just have no relevance or bearing on the bigger picture. I am recognizing that now and I am taking action to be above that.
