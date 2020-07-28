@@ -1,13 +1,13 @@
 ---
 layout: post
 title: "Setting Up"
-subtitle: "Want to start developing on your Mac Book?"
+subtitle: "Want to start developing on your MacBook?"
 date: 2020-07-27 4:34:58PM EST
 background: '/img/posts/kevin-ku-w7ZyuGYNpRQ-unsplash.jpg'
 markdown:           kramdown
 category: tech
 tags: tech  
-description: Setting up dev environment for your Mac Book
+description: Setting up dev environment for your MacBook
 ---
 
   <a class="top-link hide" href="" id="js-top">
@@ -25,9 +25,9 @@ description: Setting up dev environment for your Mac Book
 ## Homebrew
 
 Homebrew is a package manager to
-> install stuff you need that Apple didn't.
+>> install stuff you need that Apple didn't.
 
-Start by getting `homebrew` (see https://brew.sh/)
+Start by getting `homebrew` (see [https://brew.sh/](homebrew website))
 
 ## `pyenv`
 
@@ -38,7 +38,7 @@ Start by getting `homebrew` (see https://brew.sh/)
 brew install pyenv
 ```
 
-If you're using Mac OSX, your shell is likely `zsh` so you'd need to also run
+With Mac OSX, your shell is likely `zsh` so you'd need to also run
 
 ```shell script
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
@@ -52,6 +52,7 @@ For more details, see https://github.com/pyenv/pyenv#Installation
 ### Check to see if it's working
 
 Now that `pyenv` is installed, check to see which `python` your system is pointing to:
+
 ```shell script
 which python  # Default: /usr/local/bin/python
 python --version  # Default: Python 2.7.3
@@ -59,6 +60,7 @@ python --version  # Default: Python 2.7.3
 
 To check which versions `python` your `python` version manager, `pyenv`,
 has installed and which is active locally or globally:
+
 ```shell script
 pyenv versions
 pyenv global
@@ -67,6 +69,7 @@ pyenv local
 
 Install the latest version of `python` (at the moment: `python 3.8.5`) as a shim in
  `pyenv`. 
+ 
 ```shell script
 PYTHON_VERSION=3.8.5
 # Install shim
@@ -78,6 +81,7 @@ pyenv local $PYTHON_VERSION
 ```
 
 Check to make sure your system is pointing to the correct shims:
+
 ```shell script
 which python  # /Users/YOURUSERNAME/.pyenv/shims/python
 python --version  # Python 3.8.5
@@ -93,11 +97,13 @@ The two main options are:
 
 Here, we'll use a python virtual environment, `venv`. In your project directory
 , create and activate your virtual environment with `venv`:
+
 ```shell script
 VENV='.venv'
 python -m venv $VENV
 . $VENV/bin/activate
 ```
+
 You'll know it's working if `(.venv)` is added to the beginning your `PS1` prompt.
 
 Now you can add python packages to your project and not worry about different
@@ -108,4 +114,5 @@ virtual environment since it's activated.
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
+
 Now you're ready to start developing!
