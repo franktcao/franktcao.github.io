@@ -40,7 +40,7 @@ brew install pyenv
 
 With Mac OSX, your shell is likely `zsh` so you'd need to also run
 
-```
+```bash
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
 echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
 echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
@@ -49,7 +49,7 @@ echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nf
 For more details, see https://github.com/pyenv/pyenv#Installation
 
 
-### Check to see if it's working
+### Check to see that it's working
 
 Now that `pyenv` is installed, check to see which `python` your system is pointing to:
 
