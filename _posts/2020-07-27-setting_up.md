@@ -34,7 +34,7 @@ Start by getting `homebrew` (see [homebrew website](https://brew.sh/)).
 `pyenv` is a `python` version manager that allows you to easily switch between
 different versions of `python` to develop different projects.
  
-```
+```bash
 brew install pyenv
 ```
 
@@ -53,7 +53,7 @@ For more details, see https://github.com/pyenv/pyenv#Installation
 
 Now that `pyenv` is installed, check to see which `python` your system is pointing to:
 
-```
+```bash
 which python  # Default: /usr/local/bin/python
 python --version  # Default: Python 2.7.3
 ```
@@ -61,7 +61,7 @@ python --version  # Default: Python 2.7.3
 To check which versions `python` your `python` version manager, `pyenv`,
 has installed and which is active locally or globally:
 
-```
+```bash
 pyenv versions
 pyenv global
 pyenv local
@@ -70,7 +70,7 @@ pyenv local
 Install the latest version of `python` (at the moment: `python 3.8.5`) as a shim in
  `pyenv`. 
  
-```
+```bash
 PYTHON_VERSION=3.8.5
 # Install shim
 pyenv install $PYTHON_VERSION
@@ -82,7 +82,7 @@ pyenv local $PYTHON_VERSION
 
 Check to make sure your system is pointing to the correct shims:
 
-```
+```zsh
 which python  # /Users/YOURUSERNAME/.pyenv/shims/python
 python --version  # Python 3.8.5
 ```
@@ -98,7 +98,7 @@ The two main options are:
 Here, we'll use a python virtual environment, `venv`. In your project directory
 , create and activate your virtual environment with `venv`:
 
-```
+```bash
 VENV='.venv'
 python -m venv $VENV
 . $VENV/bin/activate
@@ -110,7 +110,7 @@ Now you can add python packages to your project and not worry about different
 versions that you've installed on your computer. Just `pip install` to update your
 virtual environment since it's activated.
 
-```
+```bash
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
