@@ -27,14 +27,14 @@ description: Setting up dev environment for your MacBook
 Homebrew is a package manager to
 >> install stuff you need that Apple didn't.
 
-Start by getting `homebrew` (see [https://brew.sh/](homebrew website))
+Start by getting `homebrew` (see [homebrew website](https://brew.sh/))
 
 ## `pyenv`
 
 `pyenv` is a `python` version manager that allows you to easily switch between
- different versions of `python` to develop different projects.
+different versions of `python` to develop different projects.
  
-```shell script
+```
 brew install pyenv
 ```
 
