@@ -3,7 +3,7 @@ layout: post
 title: "Setting Up"
 subtitle: "Want to start developing on your Mac Book?"
 date: 2020-07-27 4:34:58PM EST
-background: '/img/ian-stauffer-bH7kZ0yazB0-unsplash.jpg'
+background: '/img/posts/kevin-ku-w7ZyuGYNpRQ-unsplash.jpg'
 markdown:           kramdown
 category: tech
 tags: tech  
@@ -15,7 +15,7 @@ description: Setting up dev environment for your Mac Book
       <span class="screen-reader-text">Back to top</span>
       </a>
 
-\[ Photo by [Ian Stauffer on Unsplash](https://unsplash.com/@ianstauffer) \]
+\[ Photo by [Kevin Ku on Unsplash](https://unsplash.com/@ikukevk) \]
 {: style="color:gray; font-size: 80%; text-align: center;"}
 
 <!--
