@@ -1,13 +1,13 @@
 ---
 layout: post
 title: "Setting Up"
-subtitle: "Want to start developing on your MacBook?"
+subtitle: "Want to start developing Python on your MacBook?"
 date: 2020-07-27 4:34:58PM EST
 background: '/img/posts/kevin-ku-w7ZyuGYNpRQ-unsplash.jpg'
 markdown:           kramdown
 category: tech
 tags: tech  
-description: Setting up dev environment for your MacBook
+description: Setting up a python dev environment for your MacBook
 ---
 
   <a class="top-link hide" href="" id="js-top">
@@ -22,17 +22,27 @@ description: Setting up dev environment for your MacBook
 <script src="https://gist.github.com/franktcao/0683211eaf86f419dc8ea2f0eb85960c.js"></script>
 -->
 
-## Homebrew
+# Intro
+So you want to develop python projects on your McBook? You'll want:
+* `homebrew` to easily install needed packages on your laptop
+* a `python` version manager (`pyenv`) to work on different projects requiring
+ different versions of `python`
+* to set up a clean environment (`venv`), independent of how your system
+ is set up, to develop on
+
+
+# Homebrew
 
 Homebrew is a package manager to
 >> install stuff you need that Apple didn't.
 
 Start by getting `homebrew` (see [homebrew website](https://brew.sh/)).
 
-## `pyenv`
+# `pyenv`
 
 `pyenv` is a `python` version manager that allows you to easily switch between
-different versions of `python` to develop different projects.
+different versions of `python` to develop different projects requiring different
+ versions of `python`.
  
 ```bash
 brew install pyenv
@@ -46,10 +56,10 @@ echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
 echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
 ```
 
-For more details, see https://github.com/pyenv/pyenv#Installation
+For more details, see [pyenv's github](https://github.com/pyenv/pyenv#Installation).
 
 
-### Check to see that it's working
+## Check to see that it's working
 
 Now that `pyenv` is installed, check to see which `python` your system is pointing to:
 
