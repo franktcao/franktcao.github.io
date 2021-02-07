@@ -1,4 +1,312 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-11-10T23:34:03-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Being Frank.</title><subtitle>Life, Tech, and Happiness</subtitle><author><name>Frank Cao</name></author><entry><title type="html">What Will Make Today Successful for Me?</title><link href="http://localhost:4000/life/2019/10/23/what_makes_today_successful.html" rel="alternate" type="text/html" title="What Will Make Today Successful for Me?" /><published>2019-10-23T18:36:05-04:00</published><updated>2019-10-23T18:36:05-04:00</updated><id>http://localhost:4000/life/2019/10/23/what_makes_today_successful</id><content type="html" xml:base="http://localhost:4000/life/2019/10/23/what_makes_today_successful.html">&lt;p&gt;&lt;a class=&quot;top-link hide&quot; href=&quot;&quot; id=&quot;js-top&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-07T16:44:59-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Being Frank.</title><subtitle>Life, Tech, and Happiness</subtitle><author><name>Frank Cao</name></author><entry><title type="html">Uploading to AWS S3 Bucket from Python file</title><link href="http://localhost:4000/tech/2021/02/07/upload_python_to_s3.html" rel="alternate" type="text/html" title="Uploading to AWS S3 Bucket from Python file" /><published>2021-02-07T12:09:42-05:00</published><updated>2021-02-07T12:09:42-05:00</updated><id>http://localhost:4000/tech/2021/02/07/upload_python_to_s3</id><content type="html" xml:base="http://localhost:4000/tech/2021/02/07/upload_python_to_s3.html">&lt;p&gt;&lt;a class=&quot;top-link hide&quot; href=&quot;&quot; id=&quot;js-top&quot;&gt;
+    &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 6&quot;&gt;&lt;path d=&quot;M12 6H0l6-6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+      &lt;span class=&quot;screen-reader-text&quot;&gt;Back to top&lt;/span&gt;
+      &lt;/a&gt;&lt;/p&gt;
+
+&lt;p style=&quot;color:gray; font-size: 80%; text-align: center;&quot;&gt;[ Photo by &lt;a href=&quot;https://unsplash.com/@jmuniz&quot;&gt;Joel Muniz on Unsplash&lt;/a&gt; ]&lt;/p&gt;
+
+&lt;!--
+&lt;script src=&quot;https://gist.github.com/franktcao/0683211eaf86f419dc8ea2f0eb85960c.js&quot;&gt;&lt;/script&gt;
+--&gt;
+
+&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+
+&lt;h1 id=&quot;setup&quot;&gt;Setup&lt;/h1&gt;
+&lt;h2 id=&quot;create-aws-account&quot;&gt;Create AWS account&lt;/h2&gt;
+&lt;p&gt;To upload to an AWS S3 bucket, you’ll need to sign up for an AWS account! Get one here:
+&lt;a href=&quot;https://aws.amazon.com/&quot;&gt;https://aws.amazon.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;requirements&quot;&gt;Requirements&lt;/h2&gt;
+&lt;p&gt;First, you’ll need to add these to your &lt;code class=&quot;highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt; (As always, I suggest 
+working in a 
+&lt;a href=&quot;https://franktcao.github.io/tech/2020/07/27/setting_up.html&quot;&gt;virtual environment&lt;/a&gt;):&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;awscli==1.19.3
+boto3==1.17.3
+botocore==1.20.3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Note, the pinned versions, likely to be outdated by the time you read this, are just 
+to show a current working combination of requirements (of course, you can leave 
+these unpinned if you so choose).&lt;/p&gt;
+
+&lt;h2 id=&quot;credentials&quot;&gt;Credentials&lt;/h2&gt;
+&lt;p&gt;In order to know if an upload is coming from a legitimate source, credentials need
+to be set up. Let’s start by creating, getting, and setting your AWS credentials.&lt;/p&gt;
+
+&lt;h3 id=&quot;create-and-get-access-keys&quot;&gt;Create and Get Access Keys&lt;/h3&gt;
+&lt;p&gt;Sign in to your AWS and go to your account’s &lt;code class=&quot;highlighter-rouge&quot;&gt;Security Credentials&lt;/code&gt; (in the top right
+taskbar, navigate through &lt;code class=&quot;highlighter-rouge&quot;&gt;My Acccount&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Security Credentials&lt;/code&gt;).&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/img/posts/upload_python_to_s3/security_credentials.png&quot; width=&quot;80%&quot; alt=&quot;Security credentials&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Click the &lt;code class=&quot;highlighter-rouge&quot;&gt;Access keys (access key ID and secret access key)&lt;/code&gt; section to expand it.&lt;/p&gt;
+
+&lt;p&gt;Click the blue &lt;code class=&quot;highlighter-rouge&quot;&gt;Create New Access Key&lt;/code&gt; button. Your key ID and secret have been
+generated. Download it and save it to somewhere secure; keep for your records.&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/img/posts/upload_python_to_s3/create_key.png&quot; width=&quot;50%&quot; alt=&quot;Create security keys&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;set-access-keys&quot;&gt;Set Access Keys&lt;/h3&gt;
+&lt;p&gt;There are several ways &lt;code class=&quot;highlighter-rouge&quot;&gt;boto3&lt;/code&gt; but the most secure ways to do so are to store your
+credentials as environment variables or to add them to your config file (you can
+read all of it in the
+&lt;a href=&quot;https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html&quot;&gt;docs&lt;/a&gt;.
+I find the most straightforward way is to store thm in a config file.&lt;/p&gt;
+
+&lt;h4 id=&quot;add-credentials-to-config-file&quot;&gt;Add credentials to config file&lt;/h4&gt;
+&lt;p&gt;If it doesn’t exist already, create a config file named &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.aws/config&lt;/code&gt; and add your
+credentials there:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;default]
+&lt;span class=&quot;nv&quot;&gt;aws_access_key_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;YOUR_ACCESS_KEY_ID
+&lt;span class=&quot;nv&quot;&gt;aws_secret_access_key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;YOUR_SECRET_ACCESS_KEY
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;where &lt;code class=&quot;highlighter-rouge&quot;&gt;YOUR_ACCESS_KEY_ID&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;YOUR_SECRETE_ACCESS_KEY&lt;/code&gt; are those values you just 
+created. They should respectively look something like:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;AKMAJZBQRYWJX71XMPZA
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;and&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SOiQJImr8c5mxX1VDJssCew0M0kpMsMnS/ypCrl1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;(Don’t worry, these are fake).&lt;/p&gt;
+
+&lt;p&gt;These credentials will be used by default for any &lt;code class=&quot;highlighter-rouge&quot;&gt;boto3&lt;/code&gt; and/or AWS CLI calls. If
+you have different credentials for different profiles, you can add them to the same
+config file but just a different section names (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;[default]&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;[profile dev]&lt;/code&gt;.
+Note, &lt;code class=&quot;highlighter-rouge&quot;&gt;profile&lt;/code&gt; is required in there. Consult the docs for more information).&lt;/p&gt;
+
+&lt;h2 id=&quot;create-s3-bucket&quot;&gt;Create S3 Bucket&lt;/h2&gt;
+&lt;p&gt;Log onto your S3 AWS console: 
+&lt;a href=&quot;https://s3.console.aws.amazon.com/&quot;&gt;https://s3.console.aws.amazon.com/&lt;/a&gt;
+and click the &lt;code class=&quot;highlighter-rouge&quot;&gt;Create Bucket&lt;/code&gt; button. Give the bucket a unique name, select an 
+appropriate &lt;code class=&quot;highlighter-rouge&quot;&gt;Region&lt;/code&gt;, and configure the bucket to your liking.&lt;/p&gt;
+&lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/img/posts/upload_python_to_s3/create_bucket.png&quot; width=&quot;100%&quot; alt=&quot;Create 
+security keys&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Click the &lt;code class=&quot;highlighter-rouge&quot;&gt;Create bucket&lt;/code&gt; button at the very bottom of the page to create it. This 
+will create the bucket and redirect you to the console where you should now see the 
+bucket.&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/img/posts/upload_python_to_s3/buckets.png&quot; width=&quot;80%&quot; alt=&quot;Create 
+security keys&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now, you’re ready to go!&lt;/p&gt;
+
+&lt;h1 id=&quot;example-usage&quot;&gt;Example Usage&lt;/h1&gt;
+&lt;h2 id=&quot;python-function&quot;&gt;Python Function&lt;/h2&gt;
+&lt;p&gt;The provided function, from the 
+&lt;a href=&quot;https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-uploading-files.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Boto3&lt;/code&gt; docs&lt;/a&gt;,
+is well documented but here the function is renamed to distinguish from possibly 
+uploading to other services:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;boto3&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;logging&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;botocore.exceptions&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ClientError&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;typing&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Optional&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;upload_to_s3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;file_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;object_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Optional&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;bool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;Upload a file to an S3 bucket.
+
+    :param file_name: File to upload
+    :param bucket: Bucket to upload to
+    :param object_name: S3 object name. If not specified then file_name is used
+    :return: True if file was uploaded, else False
+    &quot;&quot;&quot;&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# If S3 object_name was not specified, use file_name
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object_name&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;object_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;file_name&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Upload the file
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;s3_client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;boto3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;s3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;s3_client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upload_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ClientError&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;try-it-out-for-yourself&quot;&gt;Try it out for yourself!&lt;/h2&gt;
+&lt;h3 id=&quot;option-1-jupyter-notebooklab&quot;&gt;Option 1: Jupyter Notebook/Lab&lt;/h3&gt;
+&lt;p&gt;Make sure your workspace/working directory has the file you want to upload somewhere 
+in it.&lt;/p&gt;
+
+&lt;p&gt;Run &lt;code class=&quot;highlighter-rouge&quot;&gt;jupyter&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;notebook&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;lab&lt;/code&gt; (I personally prefer &lt;code class=&quot;highlighter-rouge&quot;&gt;lab&lt;/code&gt; since you can have 
+&lt;code class=&quot;highlighter-rouge&quot;&gt;vim&lt;/code&gt; keybindings but that might take some additional steps to set up):&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jupyter notebook
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Copy the function and imports into a cell and run it. Add a cell with&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;FULL_PATH_TO_FILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;some/path/to/file.ext&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;YOUR_BUCKET_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;my-superb-bucket&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;YOUR_OBJECT_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;my_test_file.ext&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;success&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upload_to_s3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;file_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FULL_PATH_TO_FILE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+    &lt;span class=&quot;n&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;YOUR_BUCKET_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+    &lt;span class=&quot;n&quot;&gt;object_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;YOUR_OBJECT_NAME&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;success&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Successfully uploaded '{YOUR_OBJECT_NAME}' to '{YOUR_BUCKET_NAME}'!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Failed to upload.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Run the cell, and you should have your file successfully uploaded! Check your S3 
+console to make sure:
+&lt;a href=&quot;https://s3.console.aws.amazon.com/&quot;&gt;https://s3.console.aws.amazon.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;option-2-setup-for-bigger-project&quot;&gt;Option 2: Setup for Bigger Project&lt;/h3&gt;
+&lt;p&gt;Let’s save function above in a file with utilities: &lt;code class=&quot;highlighter-rouge&quot;&gt;utils.py&lt;/code&gt;
+Then create a file &lt;code class=&quot;highlighter-rouge&quot;&gt;upload_file.py&lt;/code&gt; and add this to its contents:&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;.utils.py&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upload_to_s3&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;FULL_PATH_TO_FILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;some/path/to/file.ext&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;YOUR_BUCKET_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;my-superb-bucket&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;YOUR_OBJECT_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;my_test_file.ext&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;success&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upload_to_s3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;file_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FULL_PATH_TO_FILE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;YOUR_BUCKET_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;object_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;YOUR_OBJECT_NAME&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;success&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Successfully uploaded '{YOUR_OBJECT_NAME}' to '{YOUR_BUCKET_NAME}'!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Failed to upload.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;You can use the &lt;code class=&quot;highlighter-rouge&quot;&gt;argparse&lt;/code&gt; package to make it more customizable and more of a 
+command-line interface (CLI) tool.&lt;/p&gt;
+
+&lt;p&gt;Finally, you can run it in the command line:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; upload_file
+Sucessfully uploaded &lt;span class=&quot;s1&quot;&gt;'my_test_file.ext'&lt;/span&gt; to &lt;span class=&quot;s1&quot;&gt;'my-superb-bucket'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Frank Cao</name></author><category term="tech" /><category term="tech," /><category term="web" /><category term="app," /><category term="bucket," /><category term="s3," /><category term="aws" /><summary type="html">Back to top</summary></entry><entry><title type="html">Setting Up</title><link href="http://localhost:4000/tech/2020/07/27/setting_up.html" rel="alternate" type="text/html" title="Setting Up" /><published>2020-07-27T17:34:58-04:00</published><updated>2020-07-27T17:34:58-04:00</updated><id>http://localhost:4000/tech/2020/07/27/setting_up</id><content type="html" xml:base="http://localhost:4000/tech/2020/07/27/setting_up.html">&lt;p&gt;&lt;a class=&quot;top-link hide&quot; href=&quot;&quot; id=&quot;js-top&quot;&gt;
+    &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 6&quot;&gt;&lt;path d=&quot;M12 6H0l6-6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+      &lt;span class=&quot;screen-reader-text&quot;&gt;Back to top&lt;/span&gt;
+      &lt;/a&gt;&lt;/p&gt;
+
+&lt;p style=&quot;color:gray; font-size: 80%; text-align: center;&quot;&gt;[ Photo by &lt;a href=&quot;https://unsplash.com/@ikukevk&quot;&gt;Kevin Ku on Unsplash&lt;/a&gt; ]&lt;/p&gt;
+
+&lt;!--
+&lt;script src=&quot;https://gist.github.com/franktcao/0683211eaf86f419dc8ea2f0eb85960c.js&quot;&gt;&lt;/script&gt;
+--&gt;
+
+&lt;h1 id=&quot;intro&quot;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;So you want to develop python projects on your McBook? You’ll want:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;homebrew&lt;/code&gt; to easily install needed packages on your laptop&lt;/li&gt;
+  &lt;li&gt;a &lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt; version manager (&lt;code class=&quot;highlighter-rouge&quot;&gt;pyenv&lt;/code&gt;) to work on different projects requiring
+ different versions of &lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;to set up a clean environment (&lt;code class=&quot;highlighter-rouge&quot;&gt;venv&lt;/code&gt;), independent of how your system
+ is set up, to develop on&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;homebrew&quot;&gt;Homebrew&lt;/h1&gt;
+
+&lt;p&gt;Homebrew is a package manager to&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;install stuff you need that Apple didn’t.&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Start by getting &lt;code class=&quot;highlighter-rouge&quot;&gt;homebrew&lt;/code&gt; (see &lt;a href=&quot;https://brew.sh/&quot;&gt;homebrew website&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h1 id=&quot;pyenv&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pyenv&lt;/code&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pyenv&lt;/code&gt; is a &lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt; version manager that allows you to easily switch between
+different versions of &lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt; to develop different projects requiring different
+ versions of &lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;pyenv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With Mac OSX, your shell is likely &lt;code class=&quot;highlighter-rouge&quot;&gt;zsh&lt;/code&gt; so you’d need to also run&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'export PYENV_ROOT=&quot;$HOME/.pyenv&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.zshrc
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.zshrc
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'if command -v pyenv 1&amp;gt;/dev/null 2&amp;gt;&amp;amp;1; then\n  eval &quot;$(pyenv init -)&quot;\nfi'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.zshrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For more details, see &lt;a href=&quot;https://github.com/pyenv/pyenv#Installation&quot;&gt;pyenv’s github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;check-to-see-that-its-working&quot;&gt;Check to see that it’s working&lt;/h2&gt;
+
+&lt;p&gt;Now that &lt;code class=&quot;highlighter-rouge&quot;&gt;pyenv&lt;/code&gt; is installed, check to see which &lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt; your system is pointing to:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;which python  &lt;span class=&quot;c&quot;&gt;# Default: /usr/local/bin/python&lt;/span&gt;
+python &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# Default: Python 2.7.3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To check which versions &lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt; your &lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt; version manager, &lt;code class=&quot;highlighter-rouge&quot;&gt;pyenv&lt;/code&gt;,
+has installed and which is active locally or globally:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pyenv versions
+pyenv global
+pyenv &lt;span class=&quot;nb&quot;&gt;local&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Install the latest version of &lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt; (at the moment: &lt;code class=&quot;highlighter-rouge&quot;&gt;python 3.8.5&lt;/code&gt;) as a shim in
+ &lt;code class=&quot;highlighter-rouge&quot;&gt;pyenv&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;PYTHON_VERSION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;3.8.5
+&lt;span class=&quot;c&quot;&gt;# Install shim&lt;/span&gt;
+pyenv &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$PYTHON_VERSION&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Set default version on your system&lt;/span&gt;
+pyenv global &lt;span class=&quot;nv&quot;&gt;$PYTHON_VERSION&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Set the version for your project (current working directory)&lt;/span&gt;
+pyenv &lt;span class=&quot;nb&quot;&gt;local&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$PYTHON_VERSION&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Check to make sure your system is pointing to the correct shims:&lt;/p&gt;
+
+&lt;div class=&quot;language-zsh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;which python  &lt;span class=&quot;c&quot;&gt;# /Users/YOURUSERNAME/.pyenv/shims/python&lt;/span&gt;
+python &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# Python 3.8.5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;setting-up-venv-virtual-environment&quot;&gt;Setting Up &lt;code class=&quot;highlighter-rouge&quot;&gt;venv&lt;/code&gt; (Virtual Environment)&lt;/h2&gt;
+&lt;p&gt;With python versions sorted out, you’ll want to develop on a “clean” system that is
+independent on how you’ve actually configured your laptop.&lt;/p&gt;
+
+&lt;p&gt;The two main options are:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Virtual Environment&lt;/li&gt;
+  &lt;li&gt;Docker Image&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here, we’ll use a python virtual environment, &lt;code class=&quot;highlighter-rouge&quot;&gt;venv&lt;/code&gt;. In your project directory
+, create and activate your virtual environment with &lt;code class=&quot;highlighter-rouge&quot;&gt;venv&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;VENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'.venv'&lt;/span&gt;
+python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv &lt;span class=&quot;nv&quot;&gt;$VENV&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$VENV&lt;/span&gt;/bin/activate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You’ll know it’s working if &lt;code class=&quot;highlighter-rouge&quot;&gt;(.venv)&lt;/code&gt; is added to the beginning your &lt;code class=&quot;highlighter-rouge&quot;&gt;PS1&lt;/code&gt; prompt.&lt;/p&gt;
+
+&lt;p&gt;Now you can add python packages to your project and not worry about different
+versions that you’ve installed on your computer. Just &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install&lt;/code&gt; to update your
+virtual environment since it’s activated.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--upgrade&lt;/span&gt; pip
+pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; requirements.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now you’re ready to start developing!&lt;/p&gt;</content><author><name>Frank Cao</name></author><category term="tech" /><category term="tech" /><summary type="html">Back to top</summary></entry><entry><title type="html">What Will Make Today Successful for Me?</title><link href="http://localhost:4000/life/2019/10/23/what_makes_today_successful.html" rel="alternate" type="text/html" title="What Will Make Today Successful for Me?" /><published>2019-10-23T18:36:05-04:00</published><updated>2019-10-23T18:36:05-04:00</updated><id>http://localhost:4000/life/2019/10/23/what_makes_today_successful</id><content type="html" xml:base="http://localhost:4000/life/2019/10/23/what_makes_today_successful.html">&lt;p&gt;&lt;a class=&quot;top-link hide&quot; href=&quot;&quot; id=&quot;js-top&quot;&gt;
     &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 6&quot;&gt;&lt;path d=&quot;M12 6H0l6-6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
       &lt;span class=&quot;screen-reader-text&quot;&gt;Back to top&lt;/span&gt;
       &lt;/a&gt;&lt;/p&gt;
@@ -10,6 +318,7 @@
 --&gt;
 
 &lt;h2 id=&quot;ramble&quot;&gt;Ramble&lt;/h2&gt;
+
 &lt;p&gt;So it’s happened: I am right now that guy writing his blog at [&lt;em&gt;Insert Your Favorite Coffee Spot&lt;/em&gt;]. I’m becoming more comfortable with that. I’m also becoming more comfortable with the idea of writing things less formally and more in the stream of consciousness style. I’m letting go of some of my perfectionism that’s kept me back from being productive because at the end of the day, who’s going to read this – who cares, right? And no, I don’t mean that in some pessimistic or dismal way. I truly mean that I have been spending so much energy on inconsequential things that just have no relevance or bearing on the bigger picture. I am recognizing that now and I am taking action to be above that.&lt;/p&gt;
 
 &lt;p&gt;Well, now that we got the formalities out of the way, let’s get into it!&lt;/p&gt;

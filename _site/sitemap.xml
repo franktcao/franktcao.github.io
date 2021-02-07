@@ -9,6 +9,14 @@
 <lastmod>2019-10-23T18:36:05-04:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/tech/2020/07/27/setting_up.html</loc>
+<lastmod>2020-07-27T17:34:58-04:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/tech/2021/02/07/upload_python_to_s3.html</loc>
+<lastmod>2021-02-07T12:09:42-05:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/about.html</loc>
 </url>
 <url>
@@ -40,9 +48,6 @@
 </url>
 <url>
 <loc>http://localhost:4000/subscribe.html</loc>
-</url>
-<url>
-<loc>http://localhost:4000/test.html</loc>
 </url>
 <url>
 <loc>http://localhost:4000/tag/tutorial.html</loc>
