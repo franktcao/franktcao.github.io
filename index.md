@@ -5,11 +5,10 @@ subtitle: Keep it together
 description: Under heavy construction.
 background: '/img/kristopher-roller-PC_lbSSxCZE-unsplash.jpg'
 header-img: '/img/headshot.jpg'
+photo-cred: Kristopher Roller
+photo-cred-link: https://unsplash.com/@krisroller
 ---
-<!--background: '/img/bg-index.jpg'-->
 
-\[ Photo by [Kristopher Roller on Unsplash](https://unsplash.com/@krisroller) \]
-{: style="color:gray; font-size: 80%; text-align: center;"}
 # Welcome to My Blog! 
 
 <p></p>

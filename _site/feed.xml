@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-14T12:29:04-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Being Frank.</title><subtitle>Life, Tech, and Happiness</subtitle><author><name>Frank Cao</name></author><entry><title type="html">Uploading to AWS S3 Bucket from Python file</title><link href="http://localhost:4000/tech/2021/02/07/upload_python_to_s3.html" rel="alternate" type="text/html" title="Uploading to AWS S3 Bucket from Python file" /><published>2021-02-07T12:09:42-05:00</published><updated>2021-02-07T12:09:42-05:00</updated><id>http://localhost:4000/tech/2021/02/07/upload_python_to_s3</id><content type="html" xml:base="http://localhost:4000/tech/2021/02/07/upload_python_to_s3.html">&lt;p&gt;&lt;a class=&quot;top-link hide&quot; href=&quot;&quot; id=&quot;js-top&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-14T13:14:01-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Being Frank.</title><subtitle>Life, Tech, and Happiness</subtitle><author><name>Frank Cao</name></author><entry><title type="html">Uploading to AWS S3 Bucket from Python file</title><link href="http://localhost:4000/tech/2021/02/07/upload_python_to_s3.html" rel="alternate" type="text/html" title="Uploading to AWS S3 Bucket from Python file" /><published>2021-02-07T12:09:42-05:00</published><updated>2021-02-07T12:09:42-05:00</updated><id>http://localhost:4000/tech/2021/02/07/upload_python_to_s3</id><content type="html" xml:base="http://localhost:4000/tech/2021/02/07/upload_python_to_s3.html">&lt;p&gt;&lt;a class=&quot;top-link hide&quot; href=&quot;&quot; id=&quot;js-top&quot;&gt;
     &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 6&quot;&gt;&lt;path d=&quot;M12 6H0l6-6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
       &lt;span class=&quot;screen-reader-text&quot;&gt;Back to top&lt;/span&gt;
       &lt;/a&gt;&lt;/p&gt;
-
-&lt;p style=&quot;color:gray; font-size: 80%; text-align: center;&quot;&gt;[ Photo by &lt;a href=&quot;https://unsplash.com/@jmuniz&quot;&gt;Joel Muniz on Unsplash&lt;/a&gt; ]&lt;/p&gt;
 
 &lt;!--
 &lt;script src=&quot;https://gist.github.com/franktcao/0683211eaf86f419dc8ea2f0eb85960c.js&quot;&gt;&lt;/script&gt;
@@ -211,8 +209,6 @@ locally &lt;em&gt;or&lt;/em&gt; whatever files your &lt;code class=&quot;highlig
       &lt;span class=&quot;screen-reader-text&quot;&gt;Back to top&lt;/span&gt;
       &lt;/a&gt;&lt;/p&gt;
 
-&lt;p style=&quot;color:gray; font-size: 80%; text-align: center;&quot;&gt;[ Photo by &lt;a href=&quot;https://unsplash.com/@ikukevk&quot;&gt;Kevin Ku on Unsplash&lt;/a&gt; ]&lt;/p&gt;
-
 &lt;!--
 &lt;script src=&quot;https://gist.github.com/franktcao/0683211eaf86f419dc8ea2f0eb85960c.js&quot;&gt;&lt;/script&gt;
 --&gt;
@@ -323,8 +319,6 @@ pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;n
       &lt;span class=&quot;screen-reader-text&quot;&gt;Back to top&lt;/span&gt;
       &lt;/a&gt;&lt;/p&gt;
 
-&lt;p style=&quot;color:gray; font-size: 80%; text-align: center;&quot;&gt;[ Photo by &lt;a href=&quot;https://unsplash.com/@ianstauffer&quot;&gt;Ian Stauffer on Unsplash&lt;/a&gt; ]&lt;/p&gt;
-
 &lt;!--
 &lt;script src=&quot;https://gist.github.com/franktcao/0683211eaf86f419dc8ea2f0eb85960c.js&quot;&gt;&lt;/script&gt;
 --&gt;
@@ -395,8 +389,6 @@ Maybe she was concerned.&lt;/p&gt;
     &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 6&quot;&gt;&lt;path d=&quot;M12 6H0l6-6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
       &lt;span class=&quot;screen-reader-text&quot;&gt;Back to top&lt;/span&gt;
       &lt;/a&gt;&lt;/p&gt;
-
-&lt;p style=&quot;color:gray; font-size: 80%; text-align: center;&quot;&gt;[ Photo by &lt;a href=&quot;https://unsplash.com/@emilep&quot;&gt;Émile Perron on Unsplash&lt;/a&gt; ]&lt;/p&gt;
 
 &lt;!--
 &lt;script src=&quot;https://gist.github.com/franktcao/0683211eaf86f419dc8ea2f0eb85960c.js&quot;&gt;&lt;/script&gt;
