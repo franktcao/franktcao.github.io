@@ -1,7 +1,7 @@
 // Styling for the navbar
 #mainNav {
   position: absolute;
-  border-bottom: 1px solid $gray-200;
+  border-bottom: 0px solid $gray-200;
   background-color: white;
   @include sans-serif-font;
   .navbar-brand {
@@ -22,11 +22,14 @@
         font-weight: 800;
         letter-spacing: 1px;
         text-transform: uppercase;
+        > .masked {
+          background-color: $white;
+        }
       }
     }
   }
   @media only screen and (min-width: 992px) {
-    border-bottom: 1px solid transparent;
+    border-bottom: 0px solid transparent;
     background: transparent;
     .navbar-brand {
       padding: 10px 20px;
@@ -67,22 +70,30 @@
       -webkit-transition: -webkit-transform 0.2s;
       -moz-transition: -moz-transform 0.2s;
       transition: transform 0.2s;
-      border-bottom: 1px solid darken($white, .05);
+      border-bottom: 0px solid darken($white, .05);
       background-color: fade-out($white, .1);
+      // Site name
       .navbar-brand {
-        color: $gray-900;
+        color: $red;
         &:focus,
         &:hover {
           color: $primary;
         }
       }
+      // Header links
       .navbar-nav {
         > li.nav-item {
           > a {
             color: $gray-900;
+            > .masked {
+              background-color: $black;
+            }
             &:focus,
             &:hover {
               color: $primary;
+              > .masked {
+                background-color: $primary;
+              }
             }
           }
         }

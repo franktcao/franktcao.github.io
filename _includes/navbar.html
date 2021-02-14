@@ -9,19 +9,37 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{{"/" | relative_url }}">Home</a>
+          <a class="nav-link" href="{{'/' | relative_url }}">
+            <div class="masked" style="-webkit-mask-image: url(/img/home.png); mask-image: url(/img/home.png);"></div>
+            Home
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{"/about" | relative_url }}">About</a>
+          <a class="nav-link" href="{{'/about' | relative_url }}">
+            <div class="masked" style="-webkit-mask-image: url(/img/user-images.png); mask-image: url(/img/user-images.png);"></div>
+<!--            <img style="padding:0 0.5rem; -webkit-filter: invert(1); filter: invert(1);" src="/img/user-images.png"/>-->
+            About
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ "/posts" | relative_url }}">Blog</a>
+          <a class="nav-link" href="{{'/posts' | relative_url }}">
+            <div class="masked" style="-webkit-mask-image: url(/img/quill.png); mask-image: url(/img/quill.png);"></div>
+<!--            <img style="padding:0 0.5rem; -webkit-filter: invert(1); filter: invert(1);" src="/img/quill.png"/>-->
+            Blog
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{"/contact" | relative_url }}">Contact</a>
+          <a class="nav-link" href="{{'/contact' | relative_url }}">
+            <div class="masked" style="-webkit-mask-image: url(/img/paper.png); mask-image: url(/img/paper.png);"></div>
+<!--            <img style="padding:0 0.5rem; -webkit-filter: invert(1); filter: invert(1);" src="/img/paper.png"/>-->
+            Contact
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{"/subscribe" | relative_url }}">Subscribe!</a>
+          <a class="nav-link" href="{{'/subscribe' | relative_url }}">
+          <div class="masked" style="-webkit-mask-image: url(/img/email.png); mask-image: url(/img/email.png);"></div>
+            Subscribe!
+          </a>
         </li>
       </ul>
     </div>
