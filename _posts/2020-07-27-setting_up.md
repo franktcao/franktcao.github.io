@@ -8,15 +8,14 @@ markdown:           kramdown
 category: tech
 tags: tech  
 description: Setting up a python dev environment for your MacBook
+photo-cred: Kevin Ku
+photo-cred-link: https://unsplash.com/@ikukevk
 ---
 
   <a class="top-link hide" href="" id="js-top">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6"><path d="M12 6H0l6-6z"/></svg>
       <span class="screen-reader-text">Back to top</span>
       </a>
-
-\[ Photo by [Kevin Ku on Unsplash](https://unsplash.com/@ikukevk) \]
-{: style="color:gray; font-size: 80%; text-align: center;"}
 
 <!--
 <script src="https://gist.github.com/franktcao/0683211eaf86f419dc8ea2f0eb85960c.js"></script>

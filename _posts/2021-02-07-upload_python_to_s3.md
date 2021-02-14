@@ -8,15 +8,14 @@ markdown:           kramdown
 category: tech
 tags: tech, web app, bucket, s3, aws 
 description: Upload to an AWS S3 bucket with a python function.
+photo-cred: Joel Muniz
+photo-cred-link: https://unsplash.com/@jmuniz
 ---
 
   <a class="top-link hide" href="" id="js-top">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6"><path d="M12 6H0l6-6z"/></svg>
       <span class="screen-reader-text">Back to top</span>
       </a>
-
-\[ Photo by [Joel Muniz on Unsplash](https://unsplash.com/@jmuniz) \]
-{: style="color:gray; font-size: 80%; text-align: center;"}
 
 <!--
 <script src="https://gist.github.com/franktcao/0683211eaf86f419dc8ea2f0eb85960c.js"></script>
