@@ -75,3 +75,11 @@ img::-moz-selection {
   color: $white;
   background: transparent;
 }
+
+.masked {
+  width: 24px;
+  height: 24px;
+  background-color: $white;
+  display: inline-block;
+  vertical-align: middle;
+}

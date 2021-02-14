@@ -63,9 +63,16 @@ img::-moz-selection {
   color: #fff;
   background: transparent; }
 
+.masked {
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  display: inline-block;
+  vertical-align: middle; }
+
 #mainNav {
   position: absolute;
-  border-bottom: 1px solid #e9ecef;
+  border-bottom: 0px solid #e9ecef;
   background-color: white;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
   #mainNav .navbar-brand {
@@ -82,9 +89,11 @@ img::-moz-selection {
     font-weight: 800;
     letter-spacing: 1px;
     text-transform: uppercase; }
+    #mainNav .navbar-nav > li.nav-item > a > .masked {
+      background-color: #fff; }
   @media only screen and (min-width: 992px) {
     #mainNav {
-      border-bottom: 1px solid transparent;
+      border-bottom: 0px solid transparent;
       background: transparent; }
       #mainNav .navbar-brand {
         padding: 10px 20px;
@@ -115,16 +124,20 @@ img::-moz-selection {
         -webkit-transition: -webkit-transform 0.2s;
         -moz-transition: -moz-transform 0.2s;
         transition: transform 0.2s;
-        border-bottom: 1px solid white;
+        border-bottom: 0px solid white;
         background-color: rgba(255, 255, 255, 0.9); }
         #mainNav.is-fixed .navbar-brand {
-          color: #212529; }
+          color: #dc3545; }
           #mainNav.is-fixed .navbar-brand:focus, #mainNav.is-fixed .navbar-brand:hover {
             color: #0085A1; }
         #mainNav.is-fixed .navbar-nav > li.nav-item > a {
           color: #212529; }
+          #mainNav.is-fixed .navbar-nav > li.nav-item > a > .masked {
+            background-color: #000; }
           #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item > a:hover {
             color: #0085A1; }
+            #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus > .masked, #mainNav.is-fixed .navbar-nav > li.nav-item > a:hover > .masked {
+              background-color: #0085A1; }
       #mainNav.is-visible {
         /* if the user changes the scrolling direction, we show the header */
         -webkit-transform: translate3d(0, 100%, 0);
