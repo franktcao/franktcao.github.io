@@ -78,6 +78,9 @@ img::-moz-selection {
   .photo-cred > a {
     color: white; }
 
+.tag > a {
+  color: white; }
+
 #mainNav {
   position: absolute;
   border-bottom: 0px solid #e9ecef;
