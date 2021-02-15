@@ -6,7 +6,7 @@ date: 2021-02-07 12:09:42PM EST
 background: '/img/posts/joel-muniz-8xQJ5LUvBwA-unsplash.jpg'
 markdown:           kramdown
 category: tech
-tags: tech, web app, bucket, s3, aws 
+tags: tech web-app bucket s3 aws 
 description: Upload to an AWS S3 bucket with a python function.
 photo-cred: Joel Muniz
 photo-cred-link: https://unsplash.com/@jmuniz

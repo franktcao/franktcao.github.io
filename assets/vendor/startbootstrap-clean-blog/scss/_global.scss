@@ -93,3 +93,9 @@ img::-moz-selection {
     color:white;
   }
 }
+
+.tag {
+  > a {
+    color: white;
+  }
+}
