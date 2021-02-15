@@ -70,6 +70,14 @@ img::-moz-selection {
   display: inline-block;
   vertical-align: middle; }
 
+.photo-cred {
+  color: white;
+  font-size: 80%;
+  text-align: center;
+  padding-bottom: 50px; }
+  .photo-cred > a {
+    color: white; }
+
 #mainNav {
   position: absolute;
   border-bottom: 0px solid #e9ecef;

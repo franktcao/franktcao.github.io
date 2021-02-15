@@ -83,3 +83,13 @@ img::-moz-selection {
   display: inline-block;
   vertical-align: middle;
 }
+
+.photo-cred {
+  color:white;
+  font-size: 80%;
+  text-align: center;
+  padding-bottom: 50px;
+  > a {
+    color:white;
+  }
+}
