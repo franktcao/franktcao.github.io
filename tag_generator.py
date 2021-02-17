@@ -14,6 +14,7 @@ Altered by Frank Cao on 08/30/19.
 
 import glob
 import os
+import inspect
 
 post_dir = '_posts/'
 tag_dir = 'tag/'
@@ -50,8 +51,20 @@ if not os.path.exists(tag_dir):
 for tag in total_tags:
     tag_filename = tag_dir + tag + '.md'
     f = open(tag_filename, 'a')
-    write_str = '---\nlayout: tagpage\ntitle: Relevant Posts\nsubtitle: Tag = ' + tag + '\ntag: ' + tag + '\nrobots: noindex\n---\n'
-    #write_str = '---\nlayout: tagpage\ntitle: \"Tag: ' + tag + '\"\ntag: ' + tag + '\nrobots: noindex\n---\n'
+    write_str = inspect.cleandoc(
+        f"""
+        ---
+        layout: tagpage
+        title: Relevant Posts
+        subtitle: Tag = {tag}
+        tag:  {tag} 
+        robots: noindex
+        background: '/img/louie-martinez-J8YmnoMG2hg-unsplash.jpg'
+        photo-cred: Louie Martinez
+        photo-cred-link: https://unsplash.com/@louie-martinez
+        ---
+        """
+    )
     f.write(write_str)
     f.close()
 

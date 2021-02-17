@@ -1,8 +1,8 @@
 ---
 layout: tagpage
 title: Relevant Posts
-subtitle: Tag = web-scraping
-tag:  web-scraping 
+subtitle: Tag = tech
+tag:  tech 
 robots: noindex
 background: '/img/louie-martinez-J8YmnoMG2hg-unsplash.jpg'
 photo-cred: Louie Martinez
