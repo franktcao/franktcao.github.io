@@ -1,8 +1,7 @@
 ---
 layout: home
-title: 
-subtitle: Keep it together
-description: Under heavy construction.
+subtitle: Life, Tech, and Happiness
+description: Frank's home, blog, and web apps
 background: '/img/kristopher-roller-PC_lbSSxCZE-unsplash.jpg'
 header-img: '/img/headshot.jpg'
 photo-cred: Kristopher Roller
