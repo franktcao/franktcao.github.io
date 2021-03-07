@@ -59,6 +59,9 @@ for tag in total_tags:
         subtitle: Tag = {tag}
         tag:  {tag} 
         robots: noindex
+        background: '/img/louie-martinez-J8YmnoMG2hg-unsplash.jpg'
+        photo-cred: Louie Martinez
+        photo-cred-link: https://unsplash.com/@louie-martinez
         ---
         """
     )
