@@ -1,6 +1,6 @@
 ---
 layout: home
-title: Welcome!
+title: 
 subtitle: Keep it together
 description: Under heavy construction.
 background: '/img/kristopher-roller-PC_lbSSxCZE-unsplash.jpg'
