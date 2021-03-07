@@ -23,7 +23,12 @@
         letter-spacing: 1px;
         text-transform: uppercase;
         > .masked {
-          background-color: $white;
+          background-color: fade-out($white, .3);
+        }
+        &:hover {
+          > .masked {
+            background-color: $white;
+          }
         }
       }
     }
@@ -33,20 +38,28 @@
     background: transparent;
     .navbar-brand {
       padding: 10px 20px;
-      color: $white;
+      color: fade-out($white, .3);
       &:focus,
       &:hover {
-        color: fade-out($white, .2);
+        color: $white;
+      }
+      > .masked {
+        background-color: fade-out($white, .3);
+      }
+      &:hover {
+        > .masked {
+          background-color: $white;
+        }
       }
     }
     .navbar-nav {
       > li.nav-item {
         > a {
           padding: 10px 20px;
-          color: $white;
+          color: fade-out($white, .3);
           &:focus,
           &:hover {
-            color: fade-out($white, .2);
+            color: $white;
           }
         }
       }
