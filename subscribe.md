@@ -2,7 +2,9 @@
 layout: page 
 title: Subscribe
 description: Keep updated with biweekly newsletters outlining new posts! 
-background: '/img/bg-about.jpg'
+background: '/img/liam-truong-YjWW9-VJlw4-unsplash.jpg'
+photo-cred: Liam Truong
+photo-cred-link: https://unsplash.com/@liamtruong
 ---
 
 <!-- Begin Mailchimp Signup Form -->
