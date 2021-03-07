@@ -139,8 +139,12 @@ img::-moz-selection {
         background-color: rgba(255, 255, 255, 0.9); }
         #mainNav.is-fixed .navbar-brand {
           color: #dc3545; }
+          #mainNav.is-fixed .navbar-brand > .masked {
+            background-color: #dc3545; }
           #mainNav.is-fixed .navbar-brand:focus, #mainNav.is-fixed .navbar-brand:hover {
             color: #0085A1; }
+            #mainNav.is-fixed .navbar-brand:focus > .masked, #mainNav.is-fixed .navbar-brand:hover > .masked {
+              background-color: #0085A1; }
         #mainNav.is-fixed .navbar-nav > li.nav-item > a {
           color: #212529; }
           #mainNav.is-fixed .navbar-nav > li.nav-item > a > .masked {

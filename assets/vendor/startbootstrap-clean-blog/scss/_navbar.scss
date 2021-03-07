@@ -75,9 +75,15 @@
       // Site name
       .navbar-brand {
         color: $red;
+        > .masked {
+          background-color: $red;
+        }
         &:focus,
         &:hover {
           color: $primary;
+          > .masked {
+            background-color: $primary;
+          }
         }
       }
       // Header links
