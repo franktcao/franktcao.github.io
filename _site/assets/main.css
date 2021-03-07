@@ -101,6 +101,8 @@ img::-moz-selection {
     letter-spacing: 1px;
     text-transform: uppercase; }
     #mainNav .navbar-nav > li.nav-item > a > .masked {
+      background-color: rgba(255, 255, 255, 0.7); }
+    #mainNav .navbar-nav > li.nav-item > a:hover > .masked {
       background-color: #fff; }
   @media only screen and (min-width: 992px) {
     #mainNav {
@@ -108,14 +110,18 @@ img::-moz-selection {
       background: transparent; }
       #mainNav .navbar-brand {
         padding: 10px 20px;
-        color: #fff; }
+        color: rgba(255, 255, 255, 0.7); }
         #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-          color: rgba(255, 255, 255, 0.8); }
+          color: #fff; }
+        #mainNav .navbar-brand > .masked {
+          background-color: rgba(255, 255, 255, 0.7); }
+        #mainNav .navbar-brand:hover > .masked {
+          background-color: #fff; }
       #mainNav .navbar-nav > li.nav-item > a {
         padding: 10px 20px;
-        color: #fff; }
+        color: rgba(255, 255, 255, 0.7); }
         #mainNav .navbar-nav > li.nav-item > a:focus, #mainNav .navbar-nav > li.nav-item > a:hover {
-          color: rgba(255, 255, 255, 0.8); } }
+          color: #fff; } }
   @media only screen and (min-width: 992px) {
     #mainNav {
       -webkit-transition: background-color 0.2s;
