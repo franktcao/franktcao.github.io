@@ -8,13 +8,9 @@ photo-cred-link: https://unsplash.com/@aaronburden
 
 {% for post in paginator.posts %}
 
-<article class="post-preview">
+<article class="post-preview" style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1) ), url('{{ post.background }}')">
   <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
-    <!--
-    {% if post.background %}
-    <img src ={{ post.background }} width="50%">
-    {% endif %}
-    -->
+
     <h2 class="post-title">{{ post.title }}</h2>
     {% if post.subtitle %}
     <h3 class="post-subtitle">{{ post.subtitle }}</h3>

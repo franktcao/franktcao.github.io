@@ -1,7 +1,28 @@
 // Styling for the post page
 .post-preview {
+  width: 100%;
+  height: 300px;
+  // Default no image (changed in html style option)
+  background-color: lightgray;
+
+  // Reshape the size of the background image
+  background-size: 100% 900px;
+  // Rounded edges
+  border-radius: 25px;
+  // Add padding to text
+  padding-bottom: 50px;
+  padding-left: 40px;
+  padding-right: 40px;
+  //vertical-align: text-bottom;
+  position: relative;
+  //min-height: 150px;
+
   > a {
-    color: $gray-900;
+    // Set to bottom
+    position: absolute;
+    bottom: 50px;
+    color: $white;
+    padding-right: 40px;
     &:focus,
     &:hover {
       text-decoration: none;
@@ -18,10 +39,15 @@
     }
   }
   > .post-meta {
+    // Set to bottom
+    position: absolute;
+    bottom: 0;
+
     font-size: 18px;
     font-style: italic;
     margin-top: 0;
-    color: $gray-600;
+    //color: $gray-600;
+    color: $gray-400;
     > a {
       text-decoration: none;
       color: $gray-900;
