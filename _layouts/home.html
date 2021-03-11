@@ -35,7 +35,7 @@ layout: default
         <!-- Home Post List -->
         {% for post in site.posts limit : 5 %}
 
-        <article class="post-preview">
+        <article class="post-preview" style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1) ), url('{{ post.background }}')">
           <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
             <h2 class="post-title">{{ post.title }}</h2>
             {% if post.subtitle %}
