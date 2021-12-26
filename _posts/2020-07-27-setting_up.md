@@ -47,11 +47,12 @@ different versions of `python` to develop different projects requiring different
 brew install pyenv
 ```
 
-With Mac OSX, your shell is likely `zsh` so you'd need to also run
+With Mac OSX, your shell is likely `zsh` so you'd need to also run (update: the correct 
+use of `$PYENV_ROOT/shims` is used instead of the previously written `$PYENV_ROOT/bin`)
 
 ```bash
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'export PATH="$PYENV_ROOT/shims:$PATH"' >> ~/.zshrc
 echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
 ```
 
