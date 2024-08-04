@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!--  Website icon-->
+  <link rel="icon" href="/img/favicon.svg">
+  <title>
+    Uploading to AWS S3 Bucket from Python file - Being Frank.
+    
+  </title>
+
+  <meta name="description" content="Back to top">
+  
+  <!--
+  
+  -->
+  <!-- Meta information so sites like Facebook can find a title, description, and a thumbnail -->
+  <meta property="og:title" content="Being Frank." />
+  <meta property="og:url" content="http://localhost:4000" />
+  
+
+  <meta property="og:description" content="First step to saving results from webapp" />
+  <!--
+  <meta property="og:image" content="img/headshot.jpg">
+  
+  -->
+
+
+
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="/assets/vendor/fontawesome-free/css/all.min.css">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/tech/2021/02/07/upload_python_to_s3.html">
+  <link rel="alternate" type="application/rss+xml" title="Being Frank." href="/feed.xml">
+
+  <!-- Collect tags from blog (see http://longqian.me/2017/02/09/github-jekyll-tag/) -->
+  
+  
+
+
+
+
+
+
+  
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <div class="masked" style="-webkit-mask-image: url(/img/home.png); mask-image: url(/img/home.png); vertical-align: top;"></div>
+      Being Frank.
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/about">
+            <div class="masked" style="-webkit-mask-image: url(/img/user-images.png); mask-image: url(/img/user-images.png);"></div>
+            About
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">
+            <div class="masked" style="-webkit-mask-image: url(/img/quill.png); mask-image: url(/img/quill.png);"></div>
+            Blog
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/webapps">
+            <div class="masked" style="-webkit-mask-image: url(/img/apps.png); mask-image: url(/img/apps.png);"></div>
+            Web Apps
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">
+            <div class="masked" style="-webkit-mask-image: url(/img/paper.png); mask-image: url(/img/paper.png);"></div>
+            Contact
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/subscribe">
+          <div class="masked" style="-webkit-mask-image: url(/img/email.png); mask-image: url(/img/email.png);"></div>
+            Subscribe!
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+
+<header class="masthead" style="background-image: url('/img/posts/joel-muniz-8xQJ5LUvBwA-unsplash.jpg')">
+  
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Uploading to AWS S3 Bucket from Python file</h1>
+            
+            <h2 class="subheading">First step to saving results from webapp</h2>
+            
+            <div class="tag">[
+                
+                <a href="/tag/tech">tech</a>
+                ,
+                
+                <a href="/tag/web-app">web-app</a>
+                ,
+                
+                <a href="/tag/bucket">bucket</a>
+                ,
+                
+                <a href="/tag/s3">s3</a>
+                ,
+                
+                <a href="/tag/aws">aws</a>
+                
+                
+              ]</div>
+            <span class="meta">Posted by
+              <a href="#">Frank Cao</a>
+              on February 07, 2021 &middot; <span class="reading-time" title="Estimated read time">
+  
+   9 mins  read </span>
+
+            </span>
+          </div>
+          <div class="photo-cred">
+            [ Background photo by <a href="https://unsplash.com/@jmuniz">Joel Muniz on Unsplash</a> ]
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p><a class="top-link hide" href="" id="js-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6"><path d="M12 6H0l6-6z"></path></svg>
+      <span class="screen-reader-text">Back to top</span>
+      </a></p>
+
+<!--
+<script src="https://gist.github.com/franktcao/0683211eaf86f419dc8ea2f0eb85960c.js"></script>
+-->
+
+<h1 id="intro">Intro</h1>
+<p>After realizing that files generated by <code class="language-plaintext highlighter-rouge">heroku</code> apps are temporary (<em>duh</em>), 
+there was a need to get those files on something more persistent – ideally a 
+programmatic way with <code class="language-plaintext highlighter-rouge">python</code>.</p>
+
+<p>Fortunately, there are many cloud storage options to consider: <code class="language-plaintext highlighter-rouge">AWS</code>, <code class="language-plaintext highlighter-rouge">GCP</code>, etc.</p>
+
+<p>For this tutorial, <code class="language-plaintext highlighter-rouge">AWS</code> <code class="language-plaintext highlighter-rouge">S3</code> was chosen, using the <code class="language-plaintext highlighter-rouge">boto3</code> <code class="language-plaintext highlighter-rouge">python</code> package to set up 
+an <code class="language-plaintext highlighter-rouge">S3</code> client and upload to a bucket.</p>
+
+<h1 id="setup">Setup</h1>
+<h2 id="create-aws-account">Create AWS account</h2>
+<p>To upload to an AWS S3 bucket, you’ll need to sign up for an AWS account! Get one here:
+<a href="https://aws.amazon.com/">https://aws.amazon.com/</a></p>
+
+<h2 id="requirements">Requirements</h2>
+<p>First, you’ll need to add these to your <code class="language-plaintext highlighter-rouge">requirements.txt</code> (As always, I suggest 
+working in a 
+<a href="https://franktcao.github.io/tech/2020/07/27/setting_up.html">virtual environment</a>):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>awscli==1.19.3
+boto3==1.17.3
+botocore==1.20.3
+</code></pre></div></div>
+<p>Note, the pinned versions, likely to be outdated by the time you read this, are just 
+to show a current working combination of requirements (of course, you can leave 
+these unpinned if you so choose).</p>
+
+<h2 id="credentials">Credentials</h2>
+<p>In order to know if an upload is coming from a legitimate source, credentials need
+to be set up. Let’s start by creating, getting, and setting your AWS credentials.</p>
+
+<h3 id="create-and-get-access-keys">Create and Get Access Keys</h3>
+<p>Sign in to your AWS and go to your account’s <code class="language-plaintext highlighter-rouge">Security Credentials</code> (in the top right
+taskbar, navigate through <code class="language-plaintext highlighter-rouge">My Acccount</code> -&gt; <code class="language-plaintext highlighter-rouge">Security Credentials</code>).</p>
+
+<div style="text-align: center;">
+    <img src="/img/posts/upload_python_to_s3/security_credentials.png" width="80%" alt="Security credentials" />
+</div>
+
+<p>Click the <code class="language-plaintext highlighter-rouge">Access keys (access key ID and secret access key)</code> section to expand it.</p>
+
+<p>Click the blue <code class="language-plaintext highlighter-rouge">Create New Access Key</code> button. Your key ID and secret have been
+generated. Download it and save it to somewhere secure; keep for your records.</p>
+
+<div style="text-align: center;">
+    <img src="/img/posts/upload_python_to_s3/create_key.png" width="50%" alt="Create security keys" />
+</div>
+
+<p><br /></p>
+
+<h3 id="set-access-keys">Set Access Keys</h3>
+<p>There are several ways <code class="language-plaintext highlighter-rouge">boto3</code> but the most secure ways to do so are to store your
+credentials as environment variables or to add them to your config file (you can
+read all of it in the
+<a href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html">docs</a>.
+I find the most straightforward way is to store them in a config file.</p>
+
+<h4 id="add-credentials-to-config-file">Add credentials to config file</h4>
+<p>If it doesn’t exist already, create a config file named <code class="language-plaintext highlighter-rouge">~/.aws/config</code> and add your
+credentials there:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>default]
+<span class="nv">aws_access_key_id</span><span class="o">=</span>YOUR_ACCESS_KEY_ID
+<span class="nv">aws_secret_access_key</span><span class="o">=</span>YOUR_SECRET_ACCESS_KEY
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">YOUR_ACCESS_KEY_ID</code> and <code class="language-plaintext highlighter-rouge">YOUR_SECRETE_ACCESS_KEY</code> are those values you just 
+created. They should respectively look something like:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AKMAJZBQRYWJX71XMPZA
+</code></pre></div></div>
+<p>and</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SOiQJImr8c5mxX1VDJssCew0M0kpMsMnS/ypCrl1
+</code></pre></div></div>
+<p>(Don’t worry, these are fake).</p>
+
+<p>These credentials will be used by default for any <code class="language-plaintext highlighter-rouge">boto3</code> and/or AWS CLI calls. If
+you have different credentials for different profiles, you can add them to the same
+config file but just a different section names (e.g. <code class="language-plaintext highlighter-rouge">[default]</code> -&gt; <code class="language-plaintext highlighter-rouge">[profile dev]</code>.
+Note, <code class="language-plaintext highlighter-rouge">profile</code> is required in there. Consult the docs for more information).</p>
+
+<h2 id="create-s3-bucket">Create S3 Bucket</h2>
+<p>Log onto your S3 AWS console: 
+<a href="https://s3.console.aws.amazon.com/">https://s3.console.aws.amazon.com/</a>
+and click the <code class="language-plaintext highlighter-rouge">Create Bucket</code> button. Give the bucket a unique name, select an 
+appropriate <code class="language-plaintext highlighter-rouge">Region</code>, and configure the bucket to your liking.</p>
+<div style="text-align: center;">
+    <img src="/img/posts/upload_python_to_s3/create_bucket.png" width="100%" alt="Create 
+security keys" />
+</div>
+
+<p>Click the <code class="language-plaintext highlighter-rouge">Create bucket</code> button at the very bottom of the page to create it. This 
+will create the bucket and redirect you to the console where you should now see the 
+bucket.</p>
+
+<div style="text-align: center;">
+    <img src="/img/posts/upload_python_to_s3/buckets.png" width="80%" alt="Create 
+security keys" />
+</div>
+
+<p>Now, you’re ready to go!</p>
+
+<h1 id="example-usage">Example Usage</h1>
+<h2 id="python-function">Python Function</h2>
+<p>The provided function, from the 
+<a href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-uploading-files.html"><code class="language-plaintext highlighter-rouge">Boto3</code> docs</a>,
+is well documented but here the function is renamed to distinguish from possibly 
+uploading to other services:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">boto3</span>
+<span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="n">botocore.exceptions</span> <span class="kn">import</span> <span class="n">ClientError</span>
+<span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+
+<span class="k">def</span> <span class="nf">upload_to_s3</span><span class="p">(</span>
+    <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">object_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s">Upload a file to an S3 bucket.
+
+    :param file_name: File to upload
+    :param bucket: Bucket to upload to
+    :param object_name: S3 object name. If not specified then file_name is used
+    :return: True if file was uploaded, else False
+    </span><span class="sh">"""</span>
+
+    <span class="c1"># If S3 object_name was not specified, use file_name
+</span>    <span class="k">if</span> <span class="n">object_name</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">object_name</span> <span class="o">=</span> <span class="n">file_name</span>
+
+    <span class="c1"># Upload the file
+</span>    <span class="n">s3_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="p">.</span><span class="nf">client</span><span class="p">(</span><span class="sh">"</span><span class="s">s3</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">s3_client</span><span class="p">.</span><span class="nf">upload_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">bucket</span><span class="p">,</span> <span class="n">object_name</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="bp">True</span>
+</code></pre></div></div>
+
+<h2 id="try-it-out-for-yourself">Try it out for yourself!</h2>
+<h3 id="option-1-jupyter-notebooklab">Option 1: Jupyter Notebook/Lab</h3>
+<p>Make sure your workspace/working directory has the file you want to upload somewhere 
+in it.</p>
+
+<p>Run <code class="language-plaintext highlighter-rouge">jupyter</code> <code class="language-plaintext highlighter-rouge">notebook</code> or <code class="language-plaintext highlighter-rouge">lab</code> (I personally prefer <code class="language-plaintext highlighter-rouge">lab</code> since you can have 
+<code class="language-plaintext highlighter-rouge">vim</code> keybindings but that might take some additional steps to set up):</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jupyter notebook
+</code></pre></div></div>
+<p>Copy the function and imports into a cell and run it. Add a cell with</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FULL_PATH_TO_FILE</span> <span class="o">=</span> <span class="sh">"</span><span class="s">some/path/to/file.ext</span><span class="sh">"</span>
+<span class="n">YOUR_BUCKET_NAME</span> <span class="o">=</span> <span class="sh">"</span><span class="s">my-superb-bucket</span><span class="sh">"</span>
+<span class="n">YOUR_OBJECT_NAME</span> <span class="o">=</span> <span class="sh">"</span><span class="s">my_test_file.ext</span><span class="sh">"</span>
+<span class="n">success</span> <span class="o">=</span> <span class="nf">upload_to_s3</span><span class="p">(</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="n">FULL_PATH_TO_FILE</span><span class="p">,</span> 
+    <span class="n">bucket</span><span class="o">=</span><span class="n">YOUR_BUCKET_NAME</span><span class="p">,</span> 
+    <span class="n">object_name</span><span class="o">=</span><span class="n">YOUR_OBJECT_NAME</span>
+<span class="p">)</span>
+<span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Successfully uploaded </span><span class="sh">'</span><span class="si">{</span><span class="n">YOUR_OBJECT_NAME</span><span class="si">}</span><span class="sh">'</span><span class="s"> to </span><span class="sh">'</span><span class="si">{</span><span class="n">YOUR_BUCKET_NAME</span><span class="si">}</span><span class="sh">'</span><span class="s">!</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Failed to upload.</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Run the cell, and you should have your file successfully uploaded! Check your S3 
+console to make sure:
+<a href="https://s3.console.aws.amazon.com/">https://s3.console.aws.amazon.com/</a></p>
+
+<h3 id="option-2-setup-for-bigger-project">Option 2: Setup for Bigger Project</h3>
+<p>Let’s save function above in a file with utilities: <code class="language-plaintext highlighter-rouge">utils.py</code>
+Then create a file <code class="language-plaintext highlighter-rouge">upload_file.py</code> and add this to its contents:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">.utils.py</span> <span class="kn">import</span> <span class="n">upload_to_s3</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="n">FULL_PATH_TO_FILE</span> <span class="o">=</span> <span class="sh">"</span><span class="s">some/path/to/file.ext</span><span class="sh">"</span>
+    <span class="n">YOUR_BUCKET_NAME</span> <span class="o">=</span> <span class="sh">"</span><span class="s">my-superb-bucket</span><span class="sh">"</span>
+    <span class="n">YOUR_OBJECT_NAME</span> <span class="o">=</span> <span class="sh">"</span><span class="s">my_test_file.ext</span><span class="sh">"</span>
+    <span class="n">success</span> <span class="o">=</span> <span class="nf">upload_to_s3</span><span class="p">(</span>
+        <span class="n">file_name</span><span class="o">=</span><span class="n">FULL_PATH_TO_FILE</span><span class="p">,</span>
+        <span class="n">bucket</span><span class="o">=</span><span class="n">YOUR_BUCKET_NAME</span><span class="p">,</span>
+        <span class="n">object_name</span><span class="o">=</span><span class="n">YOUR_OBJECT_NAME</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Successfully uploaded </span><span class="sh">'</span><span class="si">{</span><span class="n">YOUR_OBJECT_NAME</span><span class="si">}</span><span class="sh">'</span><span class="s"> to </span><span class="sh">'</span><span class="si">{</span><span class="n">YOUR_BUCKET_NAME</span><span class="si">}</span><span class="sh">'</span><span class="s">!</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Failed to upload.</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+<p>You can use the <code class="language-plaintext highlighter-rouge">argparse</code> package to make it more customizable and more of a 
+command-line interface (CLI) tool.</p>
+
+<p>Finally, you can run it in the command line:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> python <span class="nt">-m</span> upload_file
+Sucessfully uploaded <span class="s1">'my_test_file.ext'</span> to <span class="s1">'my-superb-bucket'</span><span class="o">!</span>
+</code></pre></div></div>
+
+<h1 id="conclusion">Conclusion</h1>
+<p>There you have it! Now you can programmatically upload whatever files you have 
+locally <em>or</em> whatever files your <code class="language-plaintext highlighter-rouge">heroku</code> app generates on its servers!</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/tech/2020/07/27/setting_up.html" data-toggle="tooltip" data-placement="top" title="Setting Up">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+<!-- Begin Web-Stat code v 6.3 -->
+<span id="wts1900354">&nbsp;</span><script>
+var wts=document.createElement('script');wts.type='text/javascript';
+wts.async=true;wts.src='https://wts.one/4/1900354/log6_2.js';
+document.getElementById('wts1900354').appendChild(wts);
+</script><noscript><a href="https://www.web-stat.com">
+<img src="https://wts.one/6/4/1900354.gif" 
+alt="Web-Stat traffic analysis"></a></noscript>
+<!-- End Web-Stat code v 6.3 -->
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:franktcao@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/franktcao">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/franktcao">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; Frank Cao 2024</p>
+        <p class="copyright text-muted">[ Navigation bar and favicon icons by <a href="https://www.flaticon.com/authors/pixel-perfect/filled/">Pixel perfect on FlatIcon</a> ] </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/clean-blog.min.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+
+
+</body>
+
+</html>
