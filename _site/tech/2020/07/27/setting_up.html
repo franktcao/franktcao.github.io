@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!--  Website icon-->
+  <link rel="icon" href="/img/favicon.svg">
+  <title>
+    Setting Up - Being Frank.
+    
+  </title>
+
+  <meta name="description" content="Back to top">
+  
+  <!--
+  
+  -->
+  <!-- Meta information so sites like Facebook can find a title, description, and a thumbnail -->
+  <meta property="og:title" content="Being Frank." />
+  <meta property="og:url" content="http://localhost:4000" />
+  
+
+  <meta property="og:description" content="Want to start developing Python on your MacBook?" />
+  <!--
+  <meta property="og:image" content="img/headshot.jpg">
+  
+  -->
+
+
+
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="/assets/vendor/fontawesome-free/css/all.min.css">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/tech/2020/07/27/setting_up.html">
+  <link rel="alternate" type="application/rss+xml" title="Being Frank." href="/feed.xml">
+
+  <!-- Collect tags from blog (see http://longqian.me/2017/02/09/github-jekyll-tag/) -->
+  
+  
+
+
+
+
+
+
+  
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <div class="masked" style="-webkit-mask-image: url(/img/home.png); mask-image: url(/img/home.png); vertical-align: top;"></div>
+      Being Frank.
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/about">
+            <div class="masked" style="-webkit-mask-image: url(/img/user-images.png); mask-image: url(/img/user-images.png);"></div>
+            About
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">
+            <div class="masked" style="-webkit-mask-image: url(/img/quill.png); mask-image: url(/img/quill.png);"></div>
+            Blog
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/webapps">
+            <div class="masked" style="-webkit-mask-image: url(/img/apps.png); mask-image: url(/img/apps.png);"></div>
+            Web Apps
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">
+            <div class="masked" style="-webkit-mask-image: url(/img/paper.png); mask-image: url(/img/paper.png);"></div>
+            Contact
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/subscribe">
+          <div class="masked" style="-webkit-mask-image: url(/img/email.png); mask-image: url(/img/email.png);"></div>
+            Subscribe!
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+
+<header class="masthead" style="background-image: url('/img/posts/kevin-ku-w7ZyuGYNpRQ-unsplash.jpg')">
+  
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Setting Up</h1>
+            
+            <h2 class="subheading">Want to start developing Python on your MacBook?</h2>
+            
+            <div class="tag">[
+                
+                <a href="/tag/tech">tech</a>
+                
+                
+              ]</div>
+            <span class="meta">Posted by
+              <a href="#">Frank Cao</a>
+              on July 27, 2020 &middot; <span class="reading-time" title="Estimated read time">
+  
+   4 mins  read </span>
+
+            </span>
+          </div>
+          <div class="photo-cred">
+            [ Background photo by <a href="https://unsplash.com/@ikukevk">Kevin Ku on Unsplash</a> ]
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p><a class="top-link hide" href="" id="js-top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6"><path d="M12 6H0l6-6z"></path></svg>
+      <span class="screen-reader-text">Back to top</span>
+      </a></p>
+
+<!--
+<script src="https://gist.github.com/franktcao/0683211eaf86f419dc8ea2f0eb85960c.js"></script>
+-->
+
+<h1 id="intro">Intro</h1>
+<p>So you want to develop python projects on your McBook? You’ll want:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">homebrew</code> to easily install needed packages on your laptop</li>
+  <li>a <code class="language-plaintext highlighter-rouge">python</code> version manager (<code class="language-plaintext highlighter-rouge">pyenv</code>) to work on different projects requiring
+ different versions of <code class="language-plaintext highlighter-rouge">python</code></li>
+  <li>to set up a clean environment (<code class="language-plaintext highlighter-rouge">venv</code>), independent of how your system
+ is set up, to develop on</li>
+</ul>
+
+<h1 id="homebrew">Homebrew</h1>
+
+<p>Homebrew is a package manager to</p>
+<blockquote>
+  <blockquote>
+    <p>install stuff you need that Apple didn’t.</p>
+  </blockquote>
+</blockquote>
+
+<p>Start by getting <code class="language-plaintext highlighter-rouge">homebrew</code> (see <a href="https://brew.sh/">homebrew website</a>).</p>
+
+<h1 id="pyenv"><code class="language-plaintext highlighter-rouge">pyenv</code></h1>
+
+<p><code class="language-plaintext highlighter-rouge">pyenv</code> is a <code class="language-plaintext highlighter-rouge">python</code> version manager that allows you to easily switch between
+different versions of <code class="language-plaintext highlighter-rouge">python</code> to develop different projects requiring different
+ versions of <code class="language-plaintext highlighter-rouge">python</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>pyenv
+</code></pre></div></div>
+
+<p>With Mac OSX, your shell is likely <code class="language-plaintext highlighter-rouge">zsh</code> so you’d need to also run (update: the correct 
+use of <code class="language-plaintext highlighter-rouge">$PYENV_ROOT/shims</code> is used instead of the previously written <code class="language-plaintext highlighter-rouge">$PYENV_ROOT/bin</code>)</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'export PYENV_ROOT="$HOME/.pyenv"'</span> <span class="o">&gt;&gt;</span> ~/.zshrc
+<span class="nb">echo</span> <span class="s1">'export PATH="$PYENV_ROOT/shims:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.zshrc
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s1">'if command -v pyenv 1&gt;/dev/null 2&gt;&amp;1; then\n  eval "$(pyenv init -)"\nfi'</span> <span class="o">&gt;&gt;</span> ~/.zshrc
+</code></pre></div></div>
+
+<p>For more details, see <a href="https://github.com/pyenv/pyenv#Installation">pyenv’s github</a>.</p>
+
+<h2 id="check-to-see-that-its-working">Check to see that it’s working</h2>
+
+<p>Now that <code class="language-plaintext highlighter-rouge">pyenv</code> is installed, check to see which <code class="language-plaintext highlighter-rouge">python</code> your system is pointing to:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>which python  <span class="c"># Default: /usr/local/bin/python</span>
+python <span class="nt">--version</span>  <span class="c"># Default: Python 2.7.3</span>
+</code></pre></div></div>
+
+<p>To check which versions <code class="language-plaintext highlighter-rouge">python</code> your <code class="language-plaintext highlighter-rouge">python</code> version manager, <code class="language-plaintext highlighter-rouge">pyenv</code>,
+has installed and which is active locally or globally:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pyenv versions
+pyenv global
+pyenv <span class="nb">local</span>
+</code></pre></div></div>
+
+<p>Install the latest version of <code class="language-plaintext highlighter-rouge">python</code> (at the moment: <code class="language-plaintext highlighter-rouge">python 3.8.5</code>) as a shim in
+ <code class="language-plaintext highlighter-rouge">pyenv</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">PYTHON_VERSION</span><span class="o">=</span>3.8.5
+<span class="c"># Install shim</span>
+pyenv <span class="nb">install</span> <span class="nv">$PYTHON_VERSION</span>
+<span class="c"># Set default version on your system</span>
+pyenv global <span class="nv">$PYTHON_VERSION</span>
+<span class="c"># Set the version for your project (current working directory)</span>
+pyenv <span class="nb">local</span> <span class="nv">$PYTHON_VERSION</span>
+</code></pre></div></div>
+
+<p>Check to make sure your system is pointing to the correct shims:</p>
+
+<div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>which python  <span class="c"># /Users/YOURUSERNAME/.pyenv/shims/python</span>
+python <span class="nt">--version</span>  <span class="c"># Python 3.8.5</span>
+</code></pre></div></div>
+
+<h2 id="setting-up-venv-virtual-environment">Setting Up <code class="language-plaintext highlighter-rouge">venv</code> (Virtual Environment)</h2>
+<p>With python versions sorted out, you’ll want to develop on a “clean” system that is
+independent on how you’ve actually configured your laptop.</p>
+
+<p>The two main options are:</p>
+<ul>
+  <li>Virtual Environment</li>
+  <li>Docker Image</li>
+</ul>
+
+<p>Here, we’ll use a python virtual environment, <code class="language-plaintext highlighter-rouge">venv</code>. In your project directory
+, create and activate your virtual environment with <code class="language-plaintext highlighter-rouge">venv</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">VENV</span><span class="o">=</span><span class="s1">'.venv'</span>
+python <span class="nt">-m</span> venv <span class="nv">$VENV</span>
+<span class="nb">.</span> <span class="nv">$VENV</span>/bin/activate
+</code></pre></div></div>
+
+<p>You’ll know it’s working if <code class="language-plaintext highlighter-rouge">(.venv)</code> is added to the beginning your <code class="language-plaintext highlighter-rouge">PS1</code> prompt.</p>
+
+<p>Now you can add python packages to your project and not worry about different
+versions that you’ve installed on your computer. Just <code class="language-plaintext highlighter-rouge">pip install</code> to update your
+virtual environment since it’s activated.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">--upgrade</span> pip
+pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div></div>
+
+<p>Now you’re ready to start developing!</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/life/2019/10/23/what_makes_today_successful.html" data-toggle="tooltip" data-placement="top" title="What Will Make Today Successful for Me?">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/tech/2021/02/07/upload_python_to_s3.html" data-toggle="tooltip" data-placement="top" title="Uploading to AWS S3 Bucket from Python file">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+<!-- Begin Web-Stat code v 6.3 -->
+<span id="wts1900354">&nbsp;</span><script>
+var wts=document.createElement('script');wts.type='text/javascript';
+wts.async=true;wts.src='https://wts.one/4/1900354/log6_2.js';
+document.getElementById('wts1900354').appendChild(wts);
+</script><noscript><a href="https://www.web-stat.com">
+<img src="https://wts.one/6/4/1900354.gif" 
+alt="Web-Stat traffic analysis"></a></noscript>
+<!-- End Web-Stat code v 6.3 -->
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:franktcao@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/franktcao">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/franktcao">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; Frank Cao 2024</p>
+        <p class="copyright text-muted">[ Navigation bar and favicon icons by <a href="https://www.flaticon.com/authors/pixel-perfect/filled/">Pixel perfect on FlatIcon</a> ] </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/clean-blog.min.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+
+
+</body>
+
+</html>
