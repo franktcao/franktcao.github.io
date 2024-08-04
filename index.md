@@ -8,18 +8,18 @@ photo-cred: Kristopher Roller
 photo-cred-link: https://unsplash.com/@krisroller
 ---
 
-# Welcome to My Blog! 
+<!-- # Welcome to My Blog!  -->
 
 <p></p>
-#### Updates:
+<!-- #### Updates:
 {: style="color: red"}
 * You can now subscribe to at-most biweekly updates (see top right in the navigation bar)!
 * Each post will have tags associated to it so you can look up the tech & tutorial, health, or any other category.
 
 The `blog` is finally up and running!... but at the same time under heavy construction. I plan on posting about blogging (pretty meta, right?), tutorials on using the Raspberry Pi,
-    cool data science projects, journaling my road to getting in shape, and sharing my experiences in this job hunt.
+    cool data science projects, journaling my road to getting in shape, and sharing my experiences in this job hunt. -->
 
-On the docket:
+<!-- On the docket:
 * **Getting started on a blog** using `github.io` and `jekyll` and adding features that this page doesn't have yet:
   * ~~Adding tags to blogs~~ and/or creating different blog categories <font color='red'>✓</font> (08/31/19)
   * ~~Adding a mailing list/subscription form~~ <font color='red'>✓</font> (08/30/19)
@@ -44,6 +44,6 @@ On the docket:
   * Searching for the right fit
   * Finding exactly what I want to do
 
-There's quite a bit of a list here. I hope you follow and see me get and keep it together!
+There's quite a bit of a list here. I hope you follow and see me get and keep it together! -->
 
 # Recent Blog Posts
