@@ -141,7 +141,7 @@
               <a href="#">Frank Cao</a>
               on August 29, 2019 &middot; <span class="reading-time" title="Estimated read time">
   
-   35 mins  read </span>
+   37 mins  read </span>
 
             </span>
           </div>
@@ -170,7 +170,7 @@
 the vocabulary is not quite compatible. So I decided that the best way to showcase my abilities (while keeping them in practice) 
 is to scrape job postings to see what is desired in industry.</p>
 
-<p>In this tutorial, we will begin to scrape <code>indeed.com</code> to compile a list of sought-after keywords that the current market is looking for. The overarching goal of this is to – other than finding a rewarding career that I absolutely love –  do statistical analysis on the vocabulary built out of what’s done here. We will start by using  <code>BeautifulSoup</code> to parse the search results, load them into <code>pandas</code>dataframes and saving them to <code>.csv</code> or <code>.json</code> files to process in the next tutorial.</p>
+<p>In this tutorial, we will begin to scrape <code class="language-plaintext highlighter-rouge">indeed.com</code> to compile a list of sought-after keywords that the current market is looking for. The overarching goal of this is to – other than finding a rewarding career that I absolutely love –  do statistical analysis on the vocabulary built out of what’s done here. We will start by using  <code class="language-plaintext highlighter-rouge">BeautifulSoup</code> to parse the search results, load them into <code class="language-plaintext highlighter-rouge">pandas</code>dataframes and saving them to <code class="language-plaintext highlighter-rouge">.csv</code> or <code class="language-plaintext highlighter-rouge">.json</code> files to process in the next tutorial.</p>
 
 <p><strong>Note:</strong> Not all websites are so welcoming to having their data scraped. Sites like glassdoor, linkedin, facebook, and many others that have personal user information are particularly vigilant when it comes to crawlig/scraping. You can check to see which parts are dis/allowed by adding ‘/robots.txt’ to the main URL (e.g. www.linkedin.com/robots.txt).</p>
 
@@ -187,7 +187,7 @@ is to scrape job postings to see what is desired in industry.</p>
       <li><a href="#setting-up-for-success" id="markdown-toc-setting-up-for-success">Setting Up for Success</a></li>
     </ul>
   </li>
-  <li><a href="#2-utilizing-beautifulsoup" id="markdown-toc-2-utilizing-beautifulsoup">2. Utilizing <code>BeautifulSoup</code></a>    <ul>
+  <li><a href="#2-utilizing-beautifulsoup" id="markdown-toc-2-utilizing-beautifulsoup">2. Utilizing <code class="language-plaintext highlighter-rouge">BeautifulSoup</code></a>    <ul>
       <li><a href="#a-understanding-the-url" id="markdown-toc-a-understanding-the-url">a. Understanding the URL</a>        <ul>
           <li><a href="#1-inspecting-indeeds-website" id="markdown-toc-1-inspecting-indeeds-website">1. Inspecting Indeed’s Website</a></li>
           <li><a href="#2-setting-variables" id="markdown-toc-2-setting-variables">2. Setting Variables</a></li>
@@ -230,27 +230,27 @@ You can find the notebook to follow along with the [notebook](https://www.github
 
 <h2 id="setting-up-for-success">Setting Up for Success</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">sys</span>
+<span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 </code></pre></div></div>
 
 <p>Below are the modules and why we use them:</p>
 <ul>
-  <li><code>sys</code>: Not really important, just a way to print out a progress bar.</li>
-  <li><code>time</code>: We use this to really get the date so that we have a time stamp on each file we create. This way, if things break in the future, we still have a working example to apply the next stages.</li>
-  <li><code>pandas</code>: If we’re going to be working with a fairly large table of data (memory-limited so if things were much heavier, we’d be querying from a database or some data distribution center), <code>pandas</code> is currently my favorite way to work with it.</li>
-  <li><code>requests</code>: This module pulls a webpage in a format to be used to feed ino <code>BeautifulSoup</code> (from a URL string with the <code>get()</code> method).</li>
-  <li><code>bs4</code>, <code>BeautifulSoup</code>: The meat and potatoes that takes the output <code>requests.get()</code> and allows you to parse through it with its built-in methods.</li>
+  <li><code class="language-plaintext highlighter-rouge">sys</code>: Not really important, just a way to print out a progress bar.</li>
+  <li><code class="language-plaintext highlighter-rouge">time</code>: We use this to really get the date so that we have a time stamp on each file we create. This way, if things break in the future, we still have a working example to apply the next stages.</li>
+  <li><code class="language-plaintext highlighter-rouge">pandas</code>: If we’re going to be working with a fairly large table of data (memory-limited so if things were much heavier, we’d be querying from a database or some data distribution center), <code class="language-plaintext highlighter-rouge">pandas</code> is currently my favorite way to work with it.</li>
+  <li><code class="language-plaintext highlighter-rouge">requests</code>: This module pulls a webpage in a format to be used to feed ino <code class="language-plaintext highlighter-rouge">BeautifulSoup</code> (from a URL string with the <code class="language-plaintext highlighter-rouge">get()</code> method).</li>
+  <li><code class="language-plaintext highlighter-rouge">bs4</code>, <code class="language-plaintext highlighter-rouge">BeautifulSoup</code>: The meat and potatoes that takes the output <code class="language-plaintext highlighter-rouge">requests.get()</code> and allows you to parse through it with its built-in methods.</li>
 </ul>
 
 <p>Alright, let’s put the tools to work.</p>
 
-<h1 id="2-utilizing-beautifulsoup">2. Utilizing <code>BeautifulSoup</code></h1>
+<h1 id="2-utilizing-beautifulsoup">2. Utilizing <code class="language-plaintext highlighter-rouge">BeautifulSoup</code></h1>
 <p>Now that we have our job query going, we want to pull job postings and fill out a table row-by-row with each posting.
-So let’s see how we can use <code>BeautifulSoup</code> to do that. First let’s acknowledge what tools will be using i.e., import the required modules.</p>
+So let’s see how we can use <code class="language-plaintext highlighter-rouge">BeautifulSoup</code> to do that. First let’s acknowledge what tools will be using i.e., import the required modules.</p>
 
 <h2 id="a-understanding-the-url">a. Understanding the URL</h2>
 <h3 id="1-inspecting-indeeds-website">1. Inspecting Indeed’s Website</h3>
@@ -260,14 +260,14 @@ So let’s see how we can use <code>BeautifulSoup</code> to do that. First let�
 
 <p>Note the address bar after you submit the search. It should look something, if not exactly, like this:</p>
 
-<p><code> https://www.indeed.com/jobs?q=data+scientist+%2420%2C000&amp;l=Boston%2C+MA </code></p>
+<p>` https://www.indeed.com/jobs?q=data+scientist+%2420%2C000&amp;l=Boston%2C+MA `</p>
 
-<p>Let’s break down what and why it looks like this. Our request was to look up job postings for ‘data scientist’ with ‘$20,000’ salary in Boston, MA. Everything after the <code>jobs?q=</code> reflects just that.</p>
+<p>Let’s break down what and why it looks like this. Our request was to look up job postings for ‘data scientist’ with ‘$20,000’ salary in Boston, MA. Everything after the <code class="language-plaintext highlighter-rouge">jobs?q=</code> reflects just that.</p>
 <ul>
-  <li><code>data+scientist</code> is pretty straightforward.</li>
-  <li>The next piece, <code>%24</code>, is the URL escape code for the dollar sign ($).</li>
-  <li>Following that is <code>20</code> and then the escape URL code for the comma <code>%2C</code> (,).</li>
-  <li>Finally, we see <code>&amp;l=</code> and <code>Boston, MA</code> afer it. This indicates an additional requirement for the query to look for job postings where the <em>location variable</em>, <code>&amp;l=</code>, is Boston, Massachusetts.</li>
+  <li><code class="language-plaintext highlighter-rouge">data+scientist</code> is pretty straightforward.</li>
+  <li>The next piece, <code class="language-plaintext highlighter-rouge">%24</code>, is the URL escape code for the dollar sign ($).</li>
+  <li>Following that is <code class="language-plaintext highlighter-rouge">20</code> and then the escape URL code for the comma <code class="language-plaintext highlighter-rouge">%2C</code> (,).</li>
+  <li>Finally, we see <code class="language-plaintext highlighter-rouge">&amp;l=</code> and <code class="language-plaintext highlighter-rouge">Boston, MA</code> afer it. This indicates an additional requirement for the query to look for job postings where the <em>location variable</em>, <code class="language-plaintext highlighter-rouge">&amp;l=</code>, is Boston, Massachusetts.</li>
 </ul>
 
 <p>Knowing this structure allows us to know how to navigate the page without having to be on it and clicking through a series of intermediate steps. Also, this will become important later in this tutorial!</p>
@@ -279,32 +279,32 @@ So let’s see how we can use <code>BeautifulSoup</code> to do that. First let�
 
 <h3 id="2-setting-variables">2. Setting Variables</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">city</span> <span class="o">=</span> <span class="s">'boston'</span>
-<span class="n">job</span> <span class="o">=</span> <span class="s">'data+scientist'</span>
-<span class="n">min_sal</span> <span class="o">=</span> <span class="s">'</span><span class="si">%2420%2</span><span class="s">C000'</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">city</span> <span class="o">=</span> <span class="sh">'</span><span class="s">boston</span><span class="sh">'</span>
+<span class="n">job</span> <span class="o">=</span> <span class="sh">'</span><span class="s">data+scientist</span><span class="sh">'</span>
+<span class="n">min_sal</span> <span class="o">=</span> <span class="sh">'</span><span class="s">%2420%2C000</span><span class="sh">'</span>
 
-<span class="n">URL_base</span> <span class="o">=</span> <span class="s">'https://www.indeed.com/jobs?q='</span> <span class="o">+</span> <span class="n">job</span> <span class="o">+</span> <span class="s">'+'</span> <span class="o">+</span> <span class="n">min_sal</span>
-<span class="n">URL_location</span> <span class="o">=</span> <span class="s">'&amp;l='</span> <span class="o">+</span> <span class="n">city</span>
+<span class="n">URL_base</span> <span class="o">=</span> <span class="sh">'</span><span class="s">https://www.indeed.com/jobs?q=</span><span class="sh">'</span> <span class="o">+</span> <span class="n">job</span> <span class="o">+</span> <span class="sh">'</span><span class="s">+</span><span class="sh">'</span> <span class="o">+</span> <span class="n">min_sal</span>
+<span class="n">URL_location</span> <span class="o">=</span> <span class="sh">'</span><span class="s">&amp;l=</span><span class="sh">'</span> <span class="o">+</span> <span class="n">city</span>
 
 <span class="n">URL</span> <span class="o">=</span> <span class="n">URL_base</span> <span class="o">+</span> <span class="n">URL_location</span> 
 </code></pre></div></div>
 
-<p>With this URL, let’s grab the results page and feed it into <code>BeautifulSoup</code>.</p>
+<p>With this URL, let’s grab the results page and feed it into <code class="language-plaintext highlighter-rouge">BeautifulSoup</code>.</p>
 
 <h3 id="3-packaging-webpage">3. Packaging Webpage</h3>
 
-<p>First, we use <code>requests</code> to get the results page. Then we make a <code>BeautifulSoup</code> class out of the webpage request.</p>
+<p>First, we use <code class="language-plaintext highlighter-rouge">requests</code> to get the results page. Then we make a <code class="language-plaintext highlighter-rouge">BeautifulSoup</code> class out of the webpage request.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL</span><span class="p">)</span>
-<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s">'lxml'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">URL</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="p">.</span><span class="n">text</span><span class="p">,</span> <span class="sh">'</span><span class="s">lxml</span><span class="sh">'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>The webpage is now in a nice class with useful methods that we can use to parse through and extract exactly what we want.</p>
 
 <h2 id="b-get-entriespostings">b. Get Entries/Postings</h2>
 
-<p>But how does it work? First, we need to know what we want so we can pinpoint what we need from <code>BeautifulSoup</code>. 
-We’re going to want to eventually loop over the job postings so let’s identify what that is and see how <code>BeautifulSoup</code> can help.
+<p>But how does it work? First, we need to know what we want so we can pinpoint what we need from <code class="language-plaintext highlighter-rouge">BeautifulSoup</code>. 
+We’re going to want to eventually loop over the job postings so let’s identify what that is and see how <code class="language-plaintext highlighter-rouge">BeautifulSoup</code> can help.
 Again, let’s inspect our results.</p>
 
 <p>What will be really helpful is Chrome’s cursor tool on the top left (highlighted in blue in the image, left of ‘Elements’ and the mobile view).</p>
@@ -312,26 +312,26 @@ Again, let’s inspect our results.</p>
 <p style="text-align: center"><a href="/img/job_scraping/ss_cursor.png"><img src="/img/job_scraping/ss_cursor.png" alt="Wow, you've already found the Easter Egg. Was it too easy?" width="50%" /></a></p>
 
 <p>When you activate this tool, whatever element you hover over on the page, you’ll see the corresponding HTML that produced it. 
-Taking a look, we see that when hovering over a single posting (highlighted in green and blue below), the corresponding <code>div</code> is highlighted on the right hand side 
+Taking a look, we see that when hovering over a single posting (highlighted in green and blue below), the corresponding <code class="language-plaintext highlighter-rouge">div</code> is highlighted on the right hand side 
 (Yes, it sure does look like an ad but it’s not – it’s a screenshot. Dammit Google!):</p>
 
 <p style="text-align: center"><a href="/img/job_scraping/ss_entry.png"><img src="/img/job_scraping/ss_entry.png" alt="Whroa" width="100%" /></a></p>
 
-<p>And there’s a lot here. There’re a lot of different terms under <code>class</code>, there’s an <code>id</code>, there’s different <code>data-</code> attributes, etc. 
+<p>And there’s a lot here. There’re a lot of different terms under <code class="language-plaintext highlighter-rouge">class</code>, there’s an <code class="language-plaintext highlighter-rouge">id</code>, there’s different <code class="language-plaintext highlighter-rouge">data-</code> attributes, etc. 
 As you go through the different postings, you’ll see a couple different things common between all of them. 
-The <code>class='row'</code> encompassed and best described the post.</p>
+The <code class="language-plaintext highlighter-rouge">class='row'</code> encompassed and best described the post.</p>
 
-<p>So, using <code>BeautifulSoup</code>, we can get all of the entries on a single webpage via defining a method:</p>
+<p>So, using <code class="language-plaintext highlighter-rouge">BeautifulSoup</code>, we can get all of the entries on a single webpage via defining a method:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_entries</span><span class="p">(</span><span class="n">soup</span><span class="p">):</span>
     <span class="c1">#     entries = soup.find_all(name='div', attrs={'class':'row'}) # This way we can have a certain criteria
-</span>    <span class="n">entries</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'div'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s">'row'</span><span class="p">)</span> <span class="c1"># This looks cleaner
+</span>    <span class="n">entries</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find_all</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">div</span><span class="sh">'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="sh">'</span><span class="s">row</span><span class="sh">'</span><span class="p">)</span> <span class="c1"># This looks cleaner
 </span>    <span class="k">return</span> <span class="n">entries</span>
 
-<span class="n">entries</span> <span class="o">=</span> <span class="n">get_entries</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span>
+<span class="n">entries</span> <span class="o">=</span> <span class="nf">get_entries</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>The first line in <code>get_entries()</code> is commented out but it’s another way to get the entries. It uses a dictionary of attributes to select exactly what you want, with multiple criteria. 
+<p>The first line in <code class="language-plaintext highlighter-rouge">get_entries()</code> is commented out but it’s another way to get the entries. It uses a dictionary of attributes to select exactly what you want, with multiple criteria. 
 Instead, we use a – what I personally prefer and find simpler/cleaner – version where you explicitly state the common variables to extract what you want.</p>
 
 <p>This returns a list of entries. At this current time, there are 18 job posting/results for a given page with pagination/links for next few pages of other postings.</p>
@@ -341,7 +341,7 @@ Instead, we use a – what I personally prefer and find simpler/cleaner – vers
 <p>For a given posting, what do we want? 
 What immediately comes to mind is the company name, location, salary range, and a description/summary.</p>
 
-<p>Look through a single job posting. There are lot of different attributes. Some obvious, some not. To start off, within the job post, there is a <code>class</code> with value <code>"title"</code>. 
+<p>Look through a single job posting. There are lot of different attributes. Some obvious, some not. To start off, within the job post, there is a <code class="language-plaintext highlighter-rouge">class</code> with value <code class="language-plaintext highlighter-rouge">"title"</code>. 
 This is the official job title that the company is seeking. Here are the common ones:</p>
 
 <table align="center">
@@ -353,60 +353,60 @@ This is the official job title that the company is seeking. Here are the common 
   </thead>
   <tbody>
     <tr>
-      <td><code>title</code></td>
+      <td><code class="language-plaintext highlighter-rouge">title</code></td>
       <td>Job Title</td>
     </tr>
     <tr>
-      <td><code>sjcl</code></td>
+      <td><code class="language-plaintext highlighter-rouge">sjcl</code></td>
       <td>Company Info</td>
     </tr>
     <tr>
-      <td><code>location</code></td>
+      <td><code class="language-plaintext highlighter-rouge">location</code></td>
       <td>Office Location</td>
     </tr>
     <tr>
-      <td><code>salarySnippet</code></td>
+      <td><code class="language-plaintext highlighter-rouge">salarySnippet</code></td>
       <td>Salary Range</td>
     </tr>
     <tr>
-      <td><code>summary</code></td>
+      <td><code class="language-plaintext highlighter-rouge">summary</code></td>
       <td>Job Summary</td>
     </tr>
   </tbody>
 </table>
 
-<p>Some things to note are that the data is not pristine: The format can change from one job posting to another (<code>sjcl</code>, <code>location</code>, …) – sometimes the values aren’t even there (<code>salarySnippet</code>, <code>location</code>, …)!</p>
+<p>Some things to note are that the data is not pristine: The format can change from one job posting to another (<code class="language-plaintext highlighter-rouge">sjcl</code>, <code class="language-plaintext highlighter-rouge">location</code>, …) – sometimes the values aren’t even there (<code class="language-plaintext highlighter-rouge">salarySnippet</code>, <code class="language-plaintext highlighter-rouge">location</code>, …)!</p>
 
 <h2 id="d-entry-example">d. Entry Example</h2>
 <h3 id="1-getting-job-location">1. Getting Job Location</h3>
-<p>Let’s go through and see how we’d use <code>BeautifulSoup</code> to get one of these values. A more complicated one that comes to mind is the job location.
+<p>Let’s go through and see how we’d use <code class="language-plaintext highlighter-rouge">BeautifulSoup</code> to get one of these values. A more complicated one that comes to mind is the job location.
 For one, it’s embedded in the company info. Also, the formatting varies from posting to posting.</p>
 
-<p>The class enclosing the location is the <code>sjcl</code>. We can get this class from an entry by using the <code>BeautifulSoup</code> element’s <code>find()</code> method. 
-Within an entry, we look for the class <code>'sjcl'</code> to pull the company info. Within that, we look for the location by <code>find()</code>ing the class <code>'location'</code>.</p>
+<p>The class enclosing the location is the <code class="language-plaintext highlighter-rouge">sjcl</code>. We can get this class from an entry by using the <code class="language-plaintext highlighter-rouge">BeautifulSoup</code> element’s <code class="language-plaintext highlighter-rouge">find()</code> method. 
+Within an entry, we look for the class <code class="language-plaintext highlighter-rouge">'sjcl'</code> to pull the company info. Within that, we look for the location by <code class="language-plaintext highlighter-rouge">find()</code>ing the class <code class="language-plaintext highlighter-rouge">'location'</code>.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_location_info</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
-    <span class="n">company_info</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s">'sjcl'</span><span class="p">)</span>
-    <span class="n">location_info</span> <span class="o">=</span> <span class="n">company_info</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s">'location'</span><span class="p">)</span>
+    <span class="n">company_info</span> <span class="o">=</span> <span class="n">entry</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="sh">'</span><span class="s">sjcl</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">location_info</span> <span class="o">=</span> <span class="n">company_info</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="sh">'</span><span class="s">location</span><span class="sh">'</span><span class="p">)</span>
 
-    <span class="n">location</span> <span class="o">=</span> <span class="n">location_info</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-    <span class="o">...</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="n">location_info</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+    <span class="bp">...</span>
 </code></pre></div></div>
 
-<p>Loaded into the <code>location</code> variable is everything within the HTML tags with <code>class="sjcl"</code> and also within <code>class="location"</code>.
-The last line above extracts the text, not including any of the HTML, CSS, etc from the <code>text</code> member. Then we additionally use python’s <code>string</code> method <code>strip</code> to get rid of excess spaces.</p>
+<p>Loaded into the <code class="language-plaintext highlighter-rouge">location</code> variable is everything within the HTML tags with <code class="language-plaintext highlighter-rouge">class="sjcl"</code> and also within <code class="language-plaintext highlighter-rouge">class="location"</code>.
+The last line above extracts the text, not including any of the HTML, CSS, etc from the <code class="language-plaintext highlighter-rouge">text</code> member. Then we additionally use python’s <code class="language-plaintext highlighter-rouge">string</code> method <code class="language-plaintext highlighter-rouge">strip</code> to get rid of excess spaces.</p>
 
-<p>Sometimes, the neighborhood is included. Within the <code>'location'</code>, the neighborhood, when there, is found within the <code>'span'</code> attribute.</p>
+<p>Sometimes, the neighborhood is included. Within the <code class="language-plaintext highlighter-rouge">'location'</code>, the neighborhood, when there, is found within the <code class="language-plaintext highlighter-rouge">'span'</code> attribute.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_neighborhood</span><span class="p">(</span><span class="n">location_info</span><span class="p">):</span>
-    <span class="n">neighborhood_info</span> <span class="o">=</span> <span class="n">location_info</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'span'</span><span class="p">)</span>
-    <span class="n">neighborhood</span> <span class="o">=</span> <span class="s">' '</span>
+    <span class="n">neighborhood_info</span> <span class="o">=</span> <span class="n">location_info</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">span</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">neighborhood</span> <span class="o">=</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span>
     <span class="k">if</span> <span class="n">neighborhood_info</span><span class="p">:</span>
-        <span class="n">neighborhood</span> <span class="o">=</span> <span class="n">neighborhood_info</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">neighborhood</span> <span class="o">=</span> <span class="n">neighborhood_info</span><span class="p">.</span><span class="n">text</span>
     <span class="k">return</span> <span class="n">neighborhood</span>
 </code></pre></div></div>
 
-<p>Finishing our <code>get_location_info()</code> method, we can extract the location along with the neighborhood.
+<p>Finishing our <code class="language-plaintext highlighter-rouge">get_location_info()</code> method, we can extract the location along with the neighborhood.
 Let’s look at an example where this is applicable.</p>
 
 <p style="text-align: center"><a href="/img/job_scraping/ss_neighborhood.png"><img src="/img/job_scraping/ss_neighborhood.png" alt="What time is it?" width="50%" /></a></p>
@@ -415,15 +415,15 @@ Let’s look at an example where this is applicable.</p>
 We’d like to keep the location and neighborhood as separate variables. So we redefine the location with the neighborhood stripped.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_location_info</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
-    <span class="o">...</span>
+    <span class="bp">...</span>
     <span class="c1"># Extract neightborhood info if it's there
-</span>    <span class="n">neighborhood</span> <span class="o">=</span> <span class="n">get_neighborhood</span><span class="p">(</span><span class="n">location_info</span><span class="p">)</span>
-    <span class="n">location</span> <span class="o">=</span> <span class="n">location</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="n">neighborhood</span><span class="p">)</span>
-    <span class="n">neighborhood</span> <span class="o">=</span> <span class="n">neighborhood</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">'()'</span><span class="p">)</span>
+</span>    <span class="n">neighborhood</span> <span class="o">=</span> <span class="nf">get_neighborhood</span><span class="p">(</span><span class="n">location_info</span><span class="p">)</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="n">location</span><span class="p">.</span><span class="nf">rstrip</span><span class="p">(</span><span class="n">neighborhood</span><span class="p">)</span>
+    <span class="n">neighborhood</span> <span class="o">=</span> <span class="n">neighborhood</span><span class="p">.</span><span class="nf">strip</span><span class="p">(</span><span class="sh">'</span><span class="s">()</span><span class="sh">'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">location</span><span class="p">,</span> <span class="n">neighborhood</span>
 
 <span class="n">test_job_entry</span> <span class="o">=</span> <span class="n">entries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">location</span><span class="p">,</span> <span class="n">neighborhood</span> <span class="o">=</span> <span class="n">get_location_info</span><span class="p">(</span><span class="n">test_job_entry</span><span class="p">)</span>
+<span class="n">location</span><span class="p">,</span> <span class="n">neighborhood</span> <span class="o">=</span> <span class="nf">get_location_info</span><span class="p">(</span><span class="n">test_job_entry</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="2-getting-the-job-description">2. Getting the Job Description</h3>
@@ -434,7 +434,7 @@ a bit later so the summary is inadequate. Getting the full job description is mu
 <p>Getting the summary is simply:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_job_summary</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">entry</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s">'summary'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">entry</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="sh">'</span><span class="s">summary</span><span class="sh">'</span><span class="p">).</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>But we can go beyond that!</p>
@@ -443,16 +443,16 @@ a bit later so the summary is inadequate. Getting the full job description is mu
 
 <p>Now, note the link. It may be a nasty thing.</p>
 
-<p><code>https://www.indeed.com/viewjob?jk=466c648cf7a22a50&amp;tk=1dkuk8nat0gc8000&amp;from=serp&amp;vjs=3&amp;advn=6613095622180756&amp;adid=77005642&amp;sjdu=teYnAu8OgCGxABCwWD3OBGSvNPsXXaEnWLrUq8268_Q7hC0YDHACZYjlfAZ2VvRY5EESrqlz1VwWF8YSqa7ebseSPxZCuEl0hMQipV1VPT6vIRhbN2jzOprwFHzzg5eqCVENzzZ9i-4GTmNHGSUnm5ZkpfgPbmXOGU2P7n50pq-C5LGpOJGmAL5Loqy_5pM1WIA2dUwXdF02ymLel9jAy22GfZafOde6nrdo-YH9JMgK4xylf_Z_R6MGkuLZCpCX</code></p>
+<p><code class="language-plaintext highlighter-rouge">https://www.indeed.com/viewjob?jk=466c648cf7a22a50&amp;tk=1dkuk8nat0gc8000&amp;from=serp&amp;vjs=3&amp;advn=6613095622180756&amp;adid=77005642&amp;sjdu=teYnAu8OgCGxABCwWD3OBGSvNPsXXaEnWLrUq8268_Q7hC0YDHACZYjlfAZ2VvRY5EESrqlz1VwWF8YSqa7ebseSPxZCuEl0hMQipV1VPT6vIRhbN2jzOprwFHzzg5eqCVENzzZ9i-4GTmNHGSUnm5ZkpfgPbmXOGU2P7n50pq-C5LGpOJGmAL5Loqy_5pM1WIA2dUwXdF02ymLel9jAy22GfZafOde6nrdo-YH9JMgK4xylf_Z_R6MGkuLZCpCX</code></p>
 
 <p>How are we going to work with this beastly thing and do it so in an automated way? Well, from our experience earlier, we saw that there’s a lot of information in the URL. 
-Maybe we don’t know what all of the tokens mean but we <em>do</em> know that the variables are separated by <code>&amp;var=</code>, where <code>var</code> is some variable. What’s more, if you’ve been observant
-when looking through the individual job posting from our results page, you’ll see that the value from the attribute name <code>data-jk</code> is a unique id that also appears in the URL! 
-And where does it show up? It shows up after <code>viewjob?</code> and subsequently after the URL variable <code>jk=</code>.</p>
+Maybe we don’t know what all of the tokens mean but we <em>do</em> know that the variables are separated by <code class="language-plaintext highlighter-rouge">&amp;var=</code>, where <code class="language-plaintext highlighter-rouge">var</code> is some variable. What’s more, if you’ve been observant
+when looking through the individual job posting from our results page, you’ll see that the value from the attribute name <code class="language-plaintext highlighter-rouge">data-jk</code> is a unique id that also appears in the URL! 
+And where does it show up? It shows up after <code class="language-plaintext highlighter-rouge">viewjob?</code> and subsequently after the URL variable <code class="language-plaintext highlighter-rouge">jk=</code>.</p>
 
 <p>Try getting rid of everything except that. What you’re left with is this:</p>
 
-<p><code>https://www.indeed.com/viewjob?jk=466c648cf7a22a50</code></p>
+<p><code class="language-plaintext highlighter-rouge">https://www.indeed.com/viewjob?jk=466c648cf7a22a50</code></p>
 
 <p>and gets you to the same page. I assume the rest of the URL is for tracking and statistics purposes to understand what was the most effective way to bring you to the job posting.</p>
 
@@ -461,118 +461,118 @@ And where does it show up? It shows up after <code>viewjob?</code> and subsequen
 <p>First, we get the unique id or link.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_link</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
-    <span class="n">link</span> <span class="o">=</span> <span class="n">entry</span><span class="p">[</span><span class="s">'data-jk'</span><span class="p">]</span>
+    <span class="n">link</span> <span class="o">=</span> <span class="n">entry</span><span class="p">[</span><span class="sh">'</span><span class="s">data-jk</span><span class="sh">'</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">link</span> 
 
-<span class="n">URL_job_desc</span> <span class="o">=</span> <span class="s">'https://www.indeed.com/viewjob?jk='</span> <span class="o">+</span> <span class="n">get_link</span><span class="p">(</span><span class="n">test_job_entry</span><span class="p">)</span>
+<span class="n">URL_job_desc</span> <span class="o">=</span> <span class="sh">'</span><span class="s">https://www.indeed.com/viewjob?jk=</span><span class="sh">'</span> <span class="o">+</span> <span class="nf">get_link</span><span class="p">(</span><span class="n">test_job_entry</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Now we can use what we’ve done before to navigate to that page and pull the data that we want. Again, navigate to the page and inspect it.</p>
 
 <p><a href="/img/job_scraping/ss_job-description.png"><img src="/img/job_scraping/ss_job-description.png" alt="Here's another one" width="100%" /></a></p>
 
-<p>If we have the unique link, we can navigate straight to the page using <code>request.get()</code> again. This time, let’s include a pause with <code>time.sleep()</code> so that we do not 
+<p>If we have the unique link, we can navigate straight to the page using <code class="language-plaintext highlighter-rouge">request.get()</code> again. This time, let’s include a pause with <code class="language-plaintext highlighter-rouge">time.sleep()</code> so that we do not 
 trigger any response due to “suspicious” web traffic.</p>
 
 <p>From my experience, the job description page is particularly messy. This is probably due to recruiters using
 – likely – internal job postings with a certain format. Regardless, we can pull the text, touch it up now, and worry about the rest during the data cleaning stage. 
-Just scanning a few examples, we see that many of the C escape sequences like <code>\n</code> and <code>\t</code> – a clear sign of copying and pasting the posting from different sources.</p>
+Just scanning a few examples, we see that many of the C escape sequences like <code class="language-plaintext highlighter-rouge">\n</code> and <code class="language-plaintext highlighter-rouge">\t</code> – a clear sign of copying and pasting the posting from different sources.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_job_description</span><span class="p">(</span><span class="n">job_page</span><span class="p">):</span>
-    <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">job_page</span><span class="p">)</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Ensuring at least 1 second between page grabs
-</span>    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s">'lxml'</span><span class="p">)</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">job_page</span><span class="p">)</span>
+    <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Ensuring at least 1 second between page grabs
+</span>    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="p">.</span><span class="n">text</span><span class="p">,</span> <span class="sh">'</span><span class="s">lxml</span><span class="sh">'</span><span class="p">)</span>
 
-    <span class="n">description</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'div'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s">'jobsearch-jobDescriptionText'</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">div</span><span class="sh">'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="sh">'</span><span class="s">jobsearch-jobDescriptionText</span><span class="sh">'</span><span class="p">)</span>
 
-    <span class="n">description</span> <span class="o">=</span> <span class="n">description</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-    <span class="n">description</span> <span class="o">=</span> <span class="n">description</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="s">' '</span><span class="p">)</span>
-    <span class="n">description</span> <span class="o">=</span> <span class="n">description</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\t</span><span class="s">'</span><span class="p">,</span><span class="s">' '</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">description</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">description</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">,</span><span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">description</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="se">\t</span><span class="sh">'</span><span class="p">,</span><span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">description</span>
 
-<span class="n">description</span> <span class="o">=</span> <span class="n">get_job_description</span><span class="p">(</span><span class="n">URL_job_desc</span><span class="p">)</span>
+<span class="n">description</span> <span class="o">=</span> <span class="nf">get_job_description</span><span class="p">(</span><span class="n">URL_job_desc</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="3-defining-all-methods-needed">3. Defining All Methods Needed</h3>
 
 <p>I won’t go into each of these and feel free to leave a comment if you have any questions to clear anything up. 
-I mix it up between using the dictionary way to gather (<code>attr=</code>) and using variables directly (<code>class_=</code>). 
-There are also some methods with <code>try:</code> and <code>except:</code>. These are used to consider entries where the variable is subject
-to change. If it’s not there, returning a <code>None</code> or a <code>NaN</code> can break the entire program.</p>
+I mix it up between using the dictionary way to gather (<code class="language-plaintext highlighter-rouge">attr=</code>) and using variables directly (<code class="language-plaintext highlighter-rouge">class_=</code>). 
+There are also some methods with <code class="language-plaintext highlighter-rouge">try:</code> and <code class="language-plaintext highlighter-rouge">except:</code>. These are used to consider entries where the variable is subject
+to change. If it’s not there, returning a <code class="language-plaintext highlighter-rouge">None</code> or a <code class="language-plaintext highlighter-rouge">NaN</code> can break the entire program.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_job_title</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
-    <span class="n">job_title_container</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'a'</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">'data-tn-element'</span><span class="p">:</span><span class="s">'jobTitle'</span><span class="p">})</span>
-    <span class="n">job_title</span> <span class="o">=</span> <span class="n">job_title_container</span><span class="o">.</span><span class="n">text</span>
-    <span class="k">return</span> <span class="n">job_title</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">job_title_container</span> <span class="o">=</span> <span class="n">entry</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">data-tn-element</span><span class="sh">'</span><span class="p">:</span><span class="sh">'</span><span class="s">jobTitle</span><span class="sh">'</span><span class="p">})</span>
+    <span class="n">job_title</span> <span class="o">=</span> <span class="n">job_title_container</span><span class="p">.</span><span class="n">text</span>
+    <span class="k">return</span> <span class="n">job_title</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">get_company</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
     <span class="n">company_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">test_entry</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s">'company'</span><span class="p">)</span>
-        <span class="n">company_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_entry</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> 
-        <span class="n">company</span> <span class="o">=</span> <span class="n">company_list</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">test_entry</span> <span class="o">=</span> <span class="n">entry</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="sh">'</span><span class="s">company</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">company_list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">test_entry</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">())</span> 
+        <span class="n">company</span> <span class="o">=</span> <span class="n">company_list</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">test_entry</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s">'result-link-source'</span><span class="p">)</span>
-            <span class="n">company_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_entry</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> 
-            <span class="n">company</span> <span class="o">=</span> <span class="n">company_list</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">test_entry</span> <span class="o">=</span> <span class="n">entry</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="sh">'</span><span class="s">result-link-source</span><span class="sh">'</span><span class="p">)</span>
+            <span class="n">company_list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">test_entry</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">())</span> 
+            <span class="n">company</span> <span class="o">=</span> <span class="n">company_list</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="n">company</span> <span class="o">=</span> <span class="s">' '</span>
+            <span class="n">company</span> <span class="o">=</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span>
     <span class="k">return</span> <span class="n">company</span>
 
 <span class="k">def</span> <span class="nf">get_location_info</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
-    <span class="n">company_info</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s">'sjcl'</span><span class="p">)</span>
-    <span class="n">location_info</span> <span class="o">=</span> <span class="n">company_info</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s">'location'</span><span class="p">)</span>
+    <span class="n">company_info</span> <span class="o">=</span> <span class="n">entry</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="sh">'</span><span class="s">sjcl</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">location_info</span> <span class="o">=</span> <span class="n">company_info</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="sh">'</span><span class="s">location</span><span class="sh">'</span><span class="p">)</span>
 
-    <span class="n">location</span> <span class="o">=</span> <span class="n">location_info</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="n">location_info</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
 
     <span class="c1"># Extract neightborhood info if it's there
-</span>    <span class="n">neighborhood</span> <span class="o">=</span> <span class="n">get_neighborhood</span><span class="p">(</span><span class="n">location_info</span><span class="p">)</span>
-    <span class="n">location</span> <span class="o">=</span> <span class="n">location</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="n">neighborhood</span><span class="p">)</span>
-    <span class="n">neighborhood</span> <span class="o">=</span> <span class="n">neighborhood</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">'()'</span><span class="p">)</span>
+</span>    <span class="n">neighborhood</span> <span class="o">=</span> <span class="nf">get_neighborhood</span><span class="p">(</span><span class="n">location_info</span><span class="p">)</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="n">location</span><span class="p">.</span><span class="nf">rstrip</span><span class="p">(</span><span class="n">neighborhood</span><span class="p">)</span>
+    <span class="n">neighborhood</span> <span class="o">=</span> <span class="n">neighborhood</span><span class="p">.</span><span class="nf">strip</span><span class="p">(</span><span class="sh">'</span><span class="s">()</span><span class="sh">'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">location</span><span class="p">,</span> <span class="n">neighborhood</span>
 
 
 <span class="k">def</span> <span class="nf">get_neighborhood</span><span class="p">(</span><span class="n">location_info</span><span class="p">):</span>
-    <span class="n">neighborhood_info</span> <span class="o">=</span> <span class="n">location_info</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'span'</span><span class="p">)</span>
-    <span class="n">neighborhood</span> <span class="o">=</span> <span class="s">' '</span>
+    <span class="n">neighborhood_info</span> <span class="o">=</span> <span class="n">location_info</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">span</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">neighborhood</span> <span class="o">=</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span>
     <span class="k">if</span> <span class="n">neighborhood_info</span><span class="p">:</span>
-        <span class="n">neighborhood</span> <span class="o">=</span> <span class="n">neighborhood_info</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">neighborhood</span> <span class="o">=</span> <span class="n">neighborhood_info</span><span class="p">.</span><span class="n">text</span>
     <span class="k">return</span> <span class="n">neighborhood</span>
 
 <span class="k">def</span> <span class="nf">get_salary</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
     <span class="n">salary_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">salary</span> <span class="o">=</span> <span class="s">''</span>
+    <span class="n">salary</span> <span class="o">=</span> <span class="sh">''</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">salary_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'nobr'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-        <span class="n">salary</span> <span class="o">=</span> <span class="n">salary_list</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">salary_list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="sh">'</span><span class="s">nobr</span><span class="sh">'</span><span class="p">).</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">())</span>
+        <span class="n">salary</span> <span class="o">=</span> <span class="n">salary_list</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">salary_container</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'div'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s">'salarySnippet'</span><span class="p">)</span>
-            <span class="n">salary_temp</span> <span class="o">=</span> <span class="n">salary_container</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'span'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s">'salary'</span><span class="p">)</span>
-            <span class="n">salary_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">salary_temp</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-            <span class="n">salary</span> <span class="o">=</span> <span class="n">salary_list</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">salary_container</span> <span class="o">=</span> <span class="n">entry</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">div</span><span class="sh">'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="sh">'</span><span class="s">salarySnippet</span><span class="sh">'</span><span class="p">)</span>
+            <span class="n">salary_temp</span> <span class="o">=</span> <span class="n">salary_container</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">span</span><span class="sh">'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="sh">'</span><span class="s">salary</span><span class="sh">'</span><span class="p">)</span>
+            <span class="n">salary_list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">salary_temp</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">())</span>
+            <span class="n">salary</span> <span class="o">=</span> <span class="n">salary_list</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="n">salary</span> <span class="o">=</span> <span class="s">' '</span>
+            <span class="n">salary</span> <span class="o">=</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span>
     <span class="k">return</span> <span class="n">salary</span>
 
 <span class="k">def</span> <span class="nf">get_job_summary</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">entry</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s">'summary'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">entry</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="sh">'</span><span class="s">summary</span><span class="sh">'</span><span class="p">).</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">get_link</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
-    <span class="n">link</span> <span class="o">=</span> <span class="n">entry</span><span class="p">[</span><span class="s">'data-jk'</span><span class="p">]</span>
+    <span class="n">link</span> <span class="o">=</span> <span class="n">entry</span><span class="p">[</span><span class="sh">'</span><span class="s">data-jk</span><span class="sh">'</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">link</span> 
 
 <span class="k">def</span> <span class="nf">get_job_description</span><span class="p">(</span><span class="n">job_page</span><span class="p">):</span>
-    <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">job_page</span><span class="p">)</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Ensuring at least 1 second between page grabs
-</span>    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s">'lxml'</span><span class="p">)</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">job_page</span><span class="p">)</span>
+    <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Ensuring at least 1 second between page grabs
+</span>    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="p">.</span><span class="n">text</span><span class="p">,</span> <span class="sh">'</span><span class="s">lxml</span><span class="sh">'</span><span class="p">)</span>
 
-    <span class="n">description</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'div'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s">'jobsearch-jobDescriptionText'</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">div</span><span class="sh">'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="sh">'</span><span class="s">jobsearch-jobDescriptionText</span><span class="sh">'</span><span class="p">)</span>
 
-    <span class="n">description</span> <span class="o">=</span> <span class="n">description</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-    <span class="n">description</span> <span class="o">=</span> <span class="n">description</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="s">' '</span><span class="p">)</span>
-    <span class="n">description</span> <span class="o">=</span> <span class="n">description</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\t</span><span class="s">'</span><span class="p">,</span><span class="s">' '</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">description</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">description</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">,</span><span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">description</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="se">\t</span><span class="sh">'</span><span class="p">,</span><span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">description</span>
 </code></pre></div></div>
 
@@ -580,59 +580,59 @@ to change. If it’s not there, returning a <code>None</code> or a <code>NaN</co
 
 <h1 id="3-putting-it-all-together-full-example">3. Putting it All Together (Full Example)</h1>
 <h2 id="a-setting-up">a. Setting Up</h2>
-<p>Again, looking at the results page, we see 18 postings per page. Since this is a variable based off indeed, let’s name the variable <code>POSTINGS_PER_PAGE</code>.
+<p>Again, looking at the results page, we see 18 postings per page. Since this is a variable based off indeed, let’s name the variable <code class="language-plaintext highlighter-rouge">POSTINGS_PER_PAGE</code>.
 We’re looking to loop over cities we’re interested in and then loop over pages and loop over postings within the page. 
-From there, we’ll construct a <code>pandas</code> dataframe with the variables that we’ll use in our machine learning and analysis stage.</p>
+From there, we’ll construct a <code class="language-plaintext highlighter-rouge">pandas</code> dataframe with the variables that we’ll use in our machine learning and analysis stage.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">max_pages_per_city</span> <span class="o">=</span> <span class="mi">60</span>
 <span class="n">POSTINGS_PER_PAGE</span> <span class="o">=</span> <span class="mi">18</span> <span class="c1"># Indeed's default 18 entries per page
 </span><span class="n">postings_per_city</span> <span class="o">=</span> <span class="n">max_pages_per_city</span> <span class="o">*</span> <span class="n">POSTINGS_PER_PAGE</span> 
 
-<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">'job_title'</span><span class="p">,</span> <span class="s">'company_name'</span><span class="p">,</span> <span class="s">'location'</span><span class="p">,</span> <span class="s">'neighborhood'</span><span class="p">,</span> <span class="s">'description'</span><span class="p">,</span> <span class="s">'salary'</span><span class="p">,</span> <span class="s">'link'</span><span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="n">columns</span><span class="p">)</span> 
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">job_title</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">company_name</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">location</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">neighborhood</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">description</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">salary</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">link</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="n">columns</span><span class="p">)</span> 
 </code></pre></div></div>
 <h2 id="b-looping-over-postings">b. Looping Over Postings</h2>
 
-<p>I’m personally only interested with job postings in and around Boston so I’ll only include that in my <code>city_set</code> but this can be extended for your own use.</p>
+<p>I’m personally only interested with job postings in and around Boston so I’ll only include that in my <code class="language-plaintext highlighter-rouge">city_set</code> but this can be extended for your own use.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">URL_base</span> <span class="o">=</span> <span class="s">'https://www.indeed.com/jobs?q=data+scientist+</span><span class="si">%2420%2</span><span class="s">C000'</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">URL_base</span> <span class="o">=</span> <span class="sh">'</span><span class="s">https://www.indeed.com/jobs?q=data+scientist+%2420%2C000</span><span class="sh">'</span>
 <span class="c1"># Loop over cities
-</span><span class="n">city_set</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Boston'</span><span class="p">]</span>
+</span><span class="n">city_set</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">Boston</span><span class="sh">'</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">city_targ</span> <span class="ow">in</span> <span class="n">city_set</span><span class="p">:</span>
-    <span class="n">URL_location</span> <span class="o">=</span> <span class="s">'&amp;l='</span> <span class="o">+</span> <span class="n">city_targ</span>
+    <span class="n">URL_location</span> <span class="o">=</span> <span class="sh">'</span><span class="s">&amp;l=</span><span class="sh">'</span> <span class="o">+</span> <span class="n">city_targ</span>
     <span class="c1"># Loop over pages
-</span>    <span class="k">for</span> <span class="n">page_number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">postings_per_city</span><span class="p">,</span> <span class="n">POSTINGS_PER_PAGE</span><span class="p">):</span>
-        <span class="n">URL_page_start</span> <span class="o">=</span> <span class="s">'&amp;start='</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">page_number</span><span class="p">)</span>
+</span>    <span class="k">for</span> <span class="n">page_number</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">postings_per_city</span><span class="p">,</span> <span class="n">POSTINGS_PER_PAGE</span><span class="p">):</span>
+        <span class="n">URL_page_start</span> <span class="o">=</span> <span class="sh">'</span><span class="s">&amp;start=</span><span class="sh">'</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">page_number</span><span class="p">)</span>
         <span class="n">URL</span> <span class="o">=</span> <span class="n">URL_base</span> <span class="o">+</span> <span class="n">URL_location</span> <span class="o">+</span> <span class="n">URL_page_start</span>
-        <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL</span><span class="p">)</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Ensuring at least 1 second between page grabs
-</span>        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s">'lxml'</span><span class="p">)</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">URL</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Ensuring at least 1 second between page grabs
+</span>        <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="p">.</span><span class="n">text</span><span class="p">,</span> <span class="sh">'</span><span class="s">lxml</span><span class="sh">'</span><span class="p">)</span>
                       
         <span class="c1"># Loop over posts/entries
-</span>        <span class="n">entries</span> <span class="o">=</span> <span class="n">get_entries</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">entry</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">entries</span><span class="p">):</span> 
-            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'</span><span class="se">\r</span><span class="s">'</span> <span class="o">+</span> <span class="s">' page: '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">page_number</span><span class="o">//</span><span class="n">POSTINGS_PER_PAGE</span><span class="p">)</span> 
-                                  <span class="o">+</span> <span class="s">' / '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_pages_per_city</span><span class="p">)</span>  
-                                  <span class="o">+</span> <span class="s">', job posting: '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">' / '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">entries</span><span class="p">))</span>
+</span>        <span class="n">entries</span> <span class="o">=</span> <span class="nf">get_entries</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">entry</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">entries</span><span class="p">):</span> 
+            <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">'</span><span class="se">\r</span><span class="sh">'</span> <span class="o">+</span> <span class="sh">'</span><span class="s"> page: </span><span class="sh">'</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">page_number</span><span class="o">//</span><span class="n">POSTINGS_PER_PAGE</span><span class="p">)</span> 
+                                  <span class="o">+</span> <span class="sh">'</span><span class="s"> / </span><span class="sh">'</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">max_pages_per_city</span><span class="p">)</span>  
+                                  <span class="o">+</span> <span class="sh">'</span><span class="s">, job posting: </span><span class="sh">'</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="sh">'</span><span class="s"> / </span><span class="sh">'</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">entries</span><span class="p">))</span>
             <span class="p">)</span>        
-            <span class="n">title</span> <span class="o">=</span> <span class="n">get_job_title</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
-            <span class="n">company</span> <span class="o">=</span> <span class="n">get_company</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
-            <span class="n">location</span><span class="p">,</span> <span class="n">neighborhood</span> <span class="o">=</span> <span class="n">get_location_info</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
-            <span class="n">salary</span> <span class="o">=</span> <span class="n">get_salary</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
-            <span class="n">link</span> <span class="o">=</span> <span class="n">get_link</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="nf">get_job_title</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+            <span class="n">company</span> <span class="o">=</span> <span class="nf">get_company</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+            <span class="n">location</span><span class="p">,</span> <span class="n">neighborhood</span> <span class="o">=</span> <span class="nf">get_location_info</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+            <span class="n">salary</span> <span class="o">=</span> <span class="nf">get_salary</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+            <span class="n">link</span> <span class="o">=</span> <span class="nf">get_link</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
               
-            <span class="n">job_page</span> <span class="o">=</span> <span class="s">'https://www.indeed.com/viewjob?jk='</span> <span class="o">+</span> <span class="n">link</span>
-            <span class="n">description</span> <span class="o">=</span> <span class="n">get_job_description</span><span class="p">(</span><span class="n">job_page</span><span class="p">)</span>
+            <span class="n">job_page</span> <span class="o">=</span> <span class="sh">'</span><span class="s">https://www.indeed.com/viewjob?jk=</span><span class="sh">'</span> <span class="o">+</span> <span class="n">link</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="nf">get_job_description</span><span class="p">(</span><span class="n">job_page</span><span class="p">)</span>
               
             <span class="c1"># Append the new row with data scraped
-</span>            <span class="n">i_next</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i_next</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">title</span><span class="p">,</span> <span class="n">company</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">neighborhood</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span> <span class="n">link</span><span class="p">]</span>
+</span>            <span class="n">i_next</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i_next</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">title</span><span class="p">,</span> <span class="n">company</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">neighborhood</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span> <span class="n">link</span><span class="p">]</span>
               
-<span class="kn">import</span> <span class="nn">datetime</span>
-<span class="n">date</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+<span class="kn">import</span> <span class="n">datetime</span>
+<span class="n">date</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">datetime</span><span class="p">.</span><span class="n">date</span><span class="p">.</span><span class="nf">today</span><span class="p">())</span>
   
 <span class="c1"># Saving dataframe as local csv file 
-</span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">date</span> <span class="o">+</span> <span class="s">'_indeed-ds-postings.csv'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span>
+</span><span class="n">df</span><span class="p">.</span><span class="nf">to_csv</span><span class="p">(</span><span class="n">date</span> <span class="o">+</span> <span class="sh">'</span><span class="s">_indeed-ds-postings.csv</span><span class="sh">'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>At the very end, we save the data in a comma-separated values (CSV) format with the date to be used in the next stages.
@@ -642,12 +642,12 @@ we still have a working copy to work with for the next stages, with the present 
 <h1 id="4-conclusion">4. Conclusion</h1>
 <p>There, you have it! To review, we’ve</p>
 <ul>
-  <li>Used <code>requests</code> to pull webpages from its URL</li>
-  <li>Seen how <code>BeautifulSoup</code> takes in the output from <code>requests.get()</code> and has built-in functions to extract elements of the page</li>
+  <li>Used <code class="language-plaintext highlighter-rouge">requests</code> to pull webpages from its URL</li>
+  <li>Seen how <code class="language-plaintext highlighter-rouge">BeautifulSoup</code> takes in the output from <code class="language-plaintext highlighter-rouge">requests.get()</code> and has built-in functions to extract elements of the page</li>
   <li>Inspected pages to see how to extract the information, once we’ve figured out what we want</li>
   <li>Inspected the URL to understand what parts are relevant and what’s fluff</li>
   <li>Got to see some data like the job description being very varied from posting to posting</li>
-  <li>Used <code>pandas</code> dataframe to load in data relevant and important to us</li>
+  <li>Used <code class="language-plaintext highlighter-rouge">pandas</code> dataframe to load in data relevant and important to us</li>
   <li>Saved the dataframe as a more universal CSV format for future stages</li>
 </ul>
 
@@ -850,7 +850,7 @@ alt="Web-Stat traffic analysis"></a></noscript>
           </li>
           
         </ul>
-        <p class="copyright text-muted">Copyright &copy; Frank Cao 2021</p>
+        <p class="copyright text-muted">Copyright &copy; Frank Cao 2024</p>
         <p class="copyright text-muted">[ Navigation bar and favicon icons by <a href="https://www.flaticon.com/authors/pixel-perfect/filled/">Pixel perfect on FlatIcon</a> ] </p>
       </div>
     </div>
