@@ -1,2 +1,11 @@
 *.sw*
 test*
+
+# PyCharm
+.idea/
+.sass-cache/
+__pycache__/
+.DS_Store
+
+_site/
+img/
